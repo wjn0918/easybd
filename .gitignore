@@ -5,3 +5,5 @@ build/
 easybd.egg-info/
 
 *.pyc
+
+*.xlsx
