@@ -16,3 +16,24 @@ mysql.table_info_to_excel("demo.xlsx")
 </p>
 
 
+# excel utils
+depend on above export excel to output some code,like : ddl, json files
+
+```python
+from easybd.db.ddl import DDLType
+from easybd.excel import Excel
+
+
+e = Excel("demo.xlsx")
+table = e.get_table("t_cs")
+
+def test_ddl2pg():
+    r = e.to_ddl(DDLType.PgSql, table.table_info)
+    print(r)
+
+def test_to_json_array():
+    e.to_json_array(table)
+```
+
+
+
