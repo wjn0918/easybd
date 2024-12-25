@@ -9,17 +9,19 @@ from easybd.datax.datax_type import DataXWriterType
 from easybd.db import TableInfo, SourceTableInfo, ETLTableInfo
 from easybd.db.ddl import DDLType
 from easybd.excel.code_type import CodeType
+from easybd.utils import log
 
 
 class Excel:
-    def __init__(self, file_path, sheet_name="Sheet1"):
+    def __init__(self, file_path, sheet_name="Sheet1", table_name=None):
         self.file_path = file_path
         self.sheet_name = sheet_name
-
-        self.data: DataFrame = self._get_data()
+        self.table_name = table_name
         self.table_meta: List[ETLTableInfo] = []
         self.table_fields = []  # 表字段
         self.table_fields_source = []  # 表来源字段
+
+        self.data: DataFrame = self._get_data()
         self._create_database_table()
 
     def get_table(self, table_name):
@@ -39,6 +41,11 @@ class Excel:
 
     def to_ddl(self, db_type: DDLType, *args):
         return db_type.value(*args)
+
+    def to_ddl2(self, db_type: DDLType):
+        return db_type.value(self.table_meta[0].table_info)
+    def to_json_array2(self):
+        return self.to_json_array(self.table_meta[0])
 
     def to_dml(self, table: ETLTableInfo, include_null=False):
         target_table_name = table.table_info.table_name
@@ -134,12 +141,16 @@ FROM
     def to_json_array(self, table:ETLTableInfo):
         table_info = table.table_info
         table_fields = table_info.table_fields
-        fields = [f"\"{str(field_name).lower()}\"" for field_name in
+        fields = [f"\"{str(field_name)}\"" for field_name in
                   table_fields]
         print("\n" + ",\n".join(fields))
 
     def _get_data(self):
-        return pd.read_excel(self.file_path, sheet_name=self.sheet_name, keep_default_na=False)
+        data = pd.read_excel(self.file_path, sheet_name=self.sheet_name, keep_default_na=False)
+        if self.table_name is not None:
+            data = data[data['表名'] == self.table_name]
+            log.logger.info(f"only init {data['表备注'].unique()[0]}")
+        return data
 
     def _check_statement(self, row, statement):
         """
@@ -204,6 +215,8 @@ FROM
             etl_t = ETLTableInfo(t, source_table_info, source_fields, source_fields_not_null=source_fields_not_null)
             return etl_t
         except AttributeError as e:
+            t = TableInfo(table_name, table_comment, table_fields, table_fields_comment, table_fields_type)
+            return ETLTableInfo(t)
             logging.error(f"{table_name}  表未配置完成")
 
     def _create_database_table(self):

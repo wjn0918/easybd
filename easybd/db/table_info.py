@@ -23,6 +23,6 @@ class SourceTableInfo:
 @dataclass
 class ETLTableInfo:
     table_info: TableInfo
-    source_table_info: List[SourceTableInfo]
-    source_fields: List[str] # 来源字段 顺序排列
-    source_fields_not_null: List[str] # 来源字段 不包含为null的 顺序排列
+    source_table_info: List[SourceTableInfo] = field(default_factory=list)
+    source_fields: List[str] = field(default_factory=list) # 来源字段 顺序排列
+    source_fields_not_null: List[str] = field(default_factory=list) # 来源字段 不包含为null的 顺序排列
