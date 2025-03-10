@@ -36,4 +36,58 @@ def test_to_json_array():
 ```
 
 
+## DATAX UTILS
+
+```python
+from easybd.datax import DataX
+
+import os
+# 指定DATAX_HOME  或者在环境变量中配置
+os.environ['DATAX_HOME'] = '/home/wjn/soft/datax'
+
+
+job_name = 'hello_datax'
+job_content = {
+    "job": {
+      "content": [
+        {
+          "reader": {
+            "name": "streamreader",
+            "parameter": {
+              "sliceRecordCount": 10,
+              "column": [
+                {
+                  "type": "long",
+                  "value": "10"
+                },
+                {
+                  "type": "string",
+                  "value": "hello，你好，世界-DataX"
+                }
+              ]
+            }
+          },
+          "writer": {
+            "name": "streamwriter",
+            "parameter": {
+              "encoding": "UTF-8",
+              "print": True
+            }
+          }
+        }
+      ],
+      "setting": {
+        "speed": {
+          "channel": 5
+         }
+      }
+    }
+  }
+
+
+datax = DataX(job_name,job_content)
+datax.run()
+
+```
+
 
