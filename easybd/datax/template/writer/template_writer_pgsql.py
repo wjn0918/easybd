@@ -1,3 +1,5 @@
+import logging
+
 from easybd.conf import JDBCConf
 from easybd.db import ETLTableInfo
 
@@ -7,7 +9,11 @@ class TemplateWriterPostgresql:
         if len(args) == 0:
             return {}
         table: ETLTableInfo = args[0]
-        jdbc_conf: JDBCConf = args[1]
+        if len(args) <= 2:
+            logging.warning("未配置write jdbc, 使用 reader jdbc 配置")
+            jdbc_conf: JDBCConf = args[1]
+        else:
+            jdbc_conf: JDBCConf = args[2]
 
         table_name = table.table_info.table_name
         columns = [field for field in table.table_info.table_fields]

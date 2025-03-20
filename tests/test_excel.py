@@ -16,6 +16,25 @@ from easybd.excel import Excel
 #     e.to_json_array(table)
 
 
+def test_ddl2hive():
+    """
+    闯将hive ddl
+    :return:
+    """
+    t = Excel("D:\wjn\gitee\schooletl-tx\doc\表结构.xlsx", sheet_name='ads',table_name="t_dorm_access_record")
+    ddl = t.to_ddl2(DDLType.HIVE)
+    print(ddl)
+
+    source_host = "172.23.0.193"
+    source_port = 5432
+    source_db = "school"
+    source_user = "postgres"
+    source_password = "Pgsql@2024"
+    jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+    r = t.to_datax(DataXReaderType.PGSQL, DataXWriterType.HIVE, t.table_meta[0], jdbc_conf)
+    print(r)
+
+
 def test_ddl2pg():
     # t = Excel("D:\wjn\gitee\schooletl-tx\doc\表结构.xlsx", sheet_name="ads", table_name="ads_t_dp_xsssjc")
     t = Excel("D:\wjn\yx\schooletl\doc\sr\etl_schema.xlsx", table_name="ods_sr_hz_hik_person")

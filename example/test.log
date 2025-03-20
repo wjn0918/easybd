@@ -1,0 +1,17 @@
+2025-03-10 14:29:20,422 - 19760 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 宿舍进出记录
+2025-03-12 09:26:43,011 - 2856 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-12 09:34:02,508 - 39764 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-12 09:35:52,746 - 43948 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_多校区管理_空间用户
+2025-03-12 09:40:10,912 - 47376 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_多校区管理_空间用户
+2025-03-14 09:58:14,460 - 24104 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_交职2.0_车辆信息
+2025-03-14 10:00:02,945 - 48840 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_车辆_车辆进出记录
+2025-03-14 10:28:29,110 - 12972 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_车辆_车辆进出记录
+2025-03-14 10:33:48,486 - 43712 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_交职2.0_车辆信息
+2025-03-14 14:22:22,542 - 43644 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_交职1.0_车辆_车辆进出记录
+2025-03-14 14:22:49,278 - 17796 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_交职1.0_车辆_车辆进出记录
+2025-03-18 11:46:59,877 - 36640 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-18 11:47:25,174 - 30556 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-20 10:01:33,892 - 31056 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-20 10:01:52,557 - 21436 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-20 10:02:36,414 - 19692 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ads_基础信息_学生信息表
+2025-03-20 10:02:36,418 - 19692 - D:\wjn\github\easybd\easybd\datax\template\writer\template_writer_pgsql.py - WARNING: 未配置write jdbc, 使用 reader jdbc 配置

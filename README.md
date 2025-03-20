@@ -20,19 +20,26 @@ mysql.table_info_to_excel("demo.xlsx")
 depend on above export excel to output some code,like : ddl, json files
 
 ```python
+from easybd.conf import JDBCConf
+from easybd.datax import DataXReaderType
+from easybd.datax.datax_type import DataXWriterType
 from easybd.db.ddl import DDLType
 from easybd.excel import Excel
 
 
-e = Excel("demo.xlsx")
-table = e.get_table("t_cs")
+if __name__ == '__main__':
+    t = Excel("D:\wjn\gitee\schooletl-tx\doc\表结构.xlsx", sheet_name='ads', table_name="t_dorm_access_record")
+    ddl = t.to_ddl2(DDLType.HIVE)
+    print(ddl)
 
-def test_ddl2pg():
-    r = e.to_ddl(DDLType.PgSql, table.table_info)
+    source_host = "172.23.0.193"
+    source_port = 5432
+    source_db = "school"
+    source_user = "postgres"
+    source_password = "Pgsql@2024"
+    jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+    r = t.to_datax(DataXReaderType.PGSQL, DataXWriterType.HIVE, t.table_meta[0], jdbc_conf)
     print(r)
-
-def test_to_json_array():
-    e.to_json_array(table)
 ```
 
 
