@@ -6,7 +6,7 @@ from easybd.excel import Excel
 
 
 if __name__ == '__main__':
-    t = Excel("D:\wjn\gitee\jzDataMigrate\jz2.xlsm", sheet_name='ads', table_name="ads_t_depart")
+    t = Excel("D:\wjn\gitee\jzDataMigrate\jz2.xlsm", sheet_name='ads', table_name="ads_t_dorm_dormitory_resident_status_hzbb")
     # ddl = t.to_ddl2(DDLType.PgSql)
     # print(ddl)
 
@@ -31,9 +31,9 @@ if __name__ == '__main__':
     # target_password = "Pgsql@2024"
     # target_jdbc_conf = JDBCConf("pgsql", target_host, target_port, target_db, target_user, target_password)
 
-    target_host = "192.168.3.205"
+    target_host = "47.97.35.199"
     target_port = 54321
-    target_db = "sr"
+    target_db = "jz"
     target_user = "postgres"
     target_password = "Pgsql@2024"
     target_jdbc_conf = JDBCConf("pgsql", target_host, target_port, target_db, target_user, target_password)

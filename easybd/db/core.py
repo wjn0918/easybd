@@ -72,6 +72,19 @@ class BaseDB:
         )
         return table_info
 
+    def _add_table_cell(self, data, sheet_table):
+        table_name = data["table_name"]
+        table_comment = data["table_comment"]
+        table_rows = data["table_rows"]
+        sheet1_title = ["表名", "表备注", "数据量"]
+        # add title
+        for i, item in enumerate(sheet1_title):
+            sheet_table.write(0, i, item, self.title_format)
+        # 添加表名和表备注
+        sheet_table.write(data.name + 1, 0, table_name)
+        sheet_table.write(data.name + 1, 1, table_comment)
+        sheet_table.write(data.name + 1, 2, table_rows)
+
     def _add_cell(self, data, *sheets):
         title = ["表名", "表备注", "字段名称", "字段类型", "字段备注", "来源表", "来源表备注", "来源表别名", "来源字段",
                  "来源字段类型",
@@ -106,10 +119,11 @@ class BaseDB:
             sheet_table_col.write(self.current_row, 4, col["col_comment"])
             self.current_row += 1
 
-    def table_info_to_excel(self, file_name):
+    def table_info_to_excel(self, file_name, only_table=False):
         """
         数据库表结构信息导出为excel
         :param file_name:
+        :param only_table: 仅导出表信息
         :return:
         """
         workbook = xw.Workbook(file_name, {'nan_inf_to_errors': True})  # 创建工作簿
@@ -118,7 +132,10 @@ class BaseDB:
 
         # 设置格式
         self.title_format = workbook.add_format({'bold': True, 'bg_color': '#5B9BD5'})
-        self.table_info.apply(lambda data: self._add_cell(data, sheet1, sheet2), axis=1)
+        if only_table:
+            self.table_info.apply(lambda data: self._add_table_cell(data, sheet1), axis=1)
+        else:
+            self.table_info.apply(lambda data: self._add_cell(data, sheet1, sheet2), axis=1)
 
         workbook.close()  # 关闭表
 
