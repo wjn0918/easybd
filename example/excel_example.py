@@ -6,7 +6,9 @@ from easybd.excel import Excel
 
 
 if __name__ == '__main__':
-    t = Excel("D:\wjn\gitee\jzDataMigrate\jz2.xlsm", sheet_name='ads', table_name="ads_t_dorm_dormitory_resident_status_hzbb")
+    # f = "D:\wjn\gitee\jzDataMigrate\jz2.xlsm"
+    f = "D:\wjn\gitee\schooletl-tx\doc\表结构.xlsx"
+    t = Excel(f, sheet_name='ods', table_name="ods_sjzx_dwt_gxxs_xsjbsjzl")
     # ddl = t.to_ddl2(DDLType.PgSql)
     # print(ddl)
 
@@ -17,12 +19,20 @@ if __name__ == '__main__':
     # source_password = "Pgsql@2024"
     # jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
 
-    source_host = "172.31.24.131"
+    # source_host = "172.31.24.131"
+    # source_port = 5432
+    # source_db = "school"
+    # source_user = "postgres"
+    # source_password = "Pgsql@2024"
+    # jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+
+    source_host = "10.200.10.22"
     source_port = 5432
-    source_db = "school"
+    source_db = "schooletl"
     source_user = "postgres"
     source_password = "Pgsql@2024"
     jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+
 
     # target_host = "47.97.35.199"
     # target_port = 54321
@@ -33,7 +43,7 @@ if __name__ == '__main__':
 
     target_host = "47.97.35.199"
     target_port = 54321
-    target_db = "jz"
+    target_db = "tx"
     target_user = "postgres"
     target_password = "Pgsql@2024"
     target_jdbc_conf = JDBCConf("pgsql", target_host, target_port, target_db, target_user, target_password)

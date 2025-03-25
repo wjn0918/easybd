@@ -7,3 +7,5 @@ easybd.egg-info/
 *.pyc
 
 *.xlsx
+
+web/node_modules/

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的简单网页</title>
+    <!-- 这里可以添加CSS样式链接，例如：<link rel="stylesheet" href="styles.css"> -->
+</head>
+
+<body>
+    <header>
+        <h1>欢迎来到我的网页！</h1>
+    </header>
+
+    <main>
+        <p>这是一个简单的语音唤醒页面示例。</p>
+        <p>在页面授权后 可以在任意事件点对着麦克风说话 系统会自动收集你说话声音触发录音 将说话声音生成为audio出现在下方可以看到测试结果</p>
+    </main>
+
+    <footer>
+        <p>版权所有 © 2023 我的网站</p>
+    </footer>
+
+    <!-- 这里可以添加JavaScript脚本链接，例如：<script src="script.js"></script> -->
+</body>
+
+<script>
+
+
+    class EventManager {
+        constructor() {
+            // 使用一个对象来存储事件和对应的回调函数  
+            this.events = {};
+        }
+
+        // 添加事件监听器  
+        on(eventName, callback) {
+            if (!this.events[eventName]) {
+                this.events[eventName] = [];
+            }
+            this.events[eventName].push(callback);
+        }
+
+        // 移除事件监听器  
+        off(eventName, callback) {
+            if (this.events[eventName]) {
+                const index = this.events[eventName].indexOf(callback);
+                if (index > -1) {
+                    this.events[eventName].splice(index, 1);
+                }
+            }
+        }
+
+        // 触发事件  
+        emit(eventName, ...args) {
+            if (this.events[eventName]) {
+                this.events[eventName].forEach(callback => {
+                    callback(...args);
+                });
+            }
+        }
+
+        // 检查是否有某个事件  
+        hasEvent(eventName) {
+            return !!this.events[eventName];
+        }
+
+        // 移除所有事件监听器  
+        removeAllListeners(eventName) {
+            if (eventName) {
+                delete this.events[eventName];
+            } else {
+                this.events = {};
+            }
+        }
+    }
+
+
+    class AudioTimer {
+
+        // MediaRecorder实例
+        mediaRecorder = null;
+
+        // 关于音频处理器状态
+        // 0 未启动 通常是因为没有获取到权限导致的
+        // 1 麦克风启动中 
+        // 2 在进行语音音频音量处理 对环境噪音进行过滤
+        // 3 在请求服务器进行文字识别
+        stateStyle = 0;
+
+        /**
+         * 创建一个用于存储录制数据的数组
+         **/
+        recordedChunks = [];
+
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        /**
+         * 事件管理器
+         * 1. onRms  // 声闻超出标准值 触发
+         */
+        $eventManager = new EventManager();
+
+        /**
+         * 零界点 进入录音保存模式
+         */
+        isRmsUp = false;
+
+        /**
+         * 关于RMS值的临界值
+         */
+        RMSVALUE = 0.05;
+
+        /**
+         * 构造函数
+         */
+        constructor() {
+            // 获取权限
+            this.getPermissions().then((stream) => {
+                // 获取权限后才能正常运行
+
+                // 创建一个MediaRecorder实例来录制音频
+                this.createMediaRecorder(stream);
+
+                // 开启麦克风定时启动监听音频流
+                this.audioTimer();
+            });
+
+        }
+
+        on(name, call) {
+            // 绑定事件
+            return this.$eventManager.on(name, call);
+        }
+
+        /**
+         * 关于麦克风的循环监听流处理
+         * 考虑到性能并发问题 采用流式队列处理器
+         */
+        audioTimer() {
+            this.audioPeriodicity().then(() => {
+                this.audioTimer();
+            });
+        }
+
+        stop() {
+            console.log("关闭音频监控")
+            this.mediaRecorder.stop(2000);
+        }
+
+        start() {
+            console.log("开启音频监控")
+            this.mediaRecorder.start(2000);
+        }
+
+        /**
+         * 启动一段音频处理周期
+         */
+        audioPeriodicity() {
+            return new Promise((resovle, err) => {
+                // 开启一个监听
+                // 开始录制（可以指定选项，例如{ mimeType: 'audio/webm; codecs=opus' }）  
+
+                // 监听dataavailable事件以收集录制的数据  
+                this.mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0 && event.data.size > 100) {
+                        // console.log("ondataavailableEvent", event);
+                        console.log("ondataavailable", this.recordedChunks.length);
+
+                        // 将阶段音频存入缓存中
+                        this.addRecordedChunks(event.data);
+
+                        // 处理一下缓存数据的RMS值
+                        this.handleAudioRms(event.data).then((Rms) => {
+                            console.log(Rms)
+                            // 判断RMS值是否达到一定的零界点 如果达到了 就判断为是为近距离说话
+                            if (Rms > this.RMSVALUE) {
+                                // 如果是出发了零界点 则开启录制模式 
+                                this.isRmsUp = true;
+                            } else if (Rms < this.RMSVALUE) {
+                                if (this.isRmsUp) {
+                                    // 如果没有达到临界值 但是 又是录音状态则挂不必录音状态
+                                    this.isRmsUp = false;
+
+                                    // 然后将保存后的录音缓存开启并进行返回
+                                    this.$eventManager.emit("onRms", this.recordedChunks.concat());
+
+                                }
+                                // 清除掉监听事件
+                                this.mediaRecorder.ondataavailable = function () { };
+                                // 然后清空缓存
+                                this.clearRecordedChunks();
+                                // 停止掉此次的监听
+                                this.stop();
+                                resovle();
+                            }
+                        }).catch(() => {
+                            console.log("音频RMS计算出现了未知错误");
+                            // 清除掉监听事件
+                            this.mediaRecorder.ondataavailable = null;
+                            // 停止掉此次的监听
+                            this.stop();
+                            // 然后清空缓存
+                            this.clearRecordedChunks();
+
+                            resovle();
+                        })
+                    } else {
+                        console.log("因为音频size小于10000字节判断为关闭stop残留数据 执行清除");
+                        // 清除掉监听事件
+                        // this.mediaRecorder.ondataavailable = null;
+                        // 停止掉此次的监听
+                        // this.stop();
+                        // 然后清空缓存
+                        // this.clearRecordedChunks();
+
+                        // resovle();
+                    }
+                };
+
+                this.start(2000);
+                // setTimeout(() => {
+                //   // 停止录制（例如，在一段时间后或用户点击按钮时）  
+                //   this.mediaRecorder.stop();
+
+                //   // 处理一下数据的RMS值
+                //   this.handleAudioRms().then((Rms) => {
+                //     console.log(Rms)
+                //     if (Rms > 0.01) {
+                //       this.$eventManager.emit("onRms", Rms);
+                //     }
+                //   }).finally(() => {
+                //     resovle();
+                //   });
+                // }, 3000); // 10秒后停止录制  
+
+
+            })
+        }
+
+        /**
+         * 对音频流进行RMS判断 
+         * RMS是一种对一段音频进行峰值判断的计算方法
+         * 当RMS达到一定值 我则认为是有效语音 不然则认为是环境音不做识别
+         */
+        async handleAudioRms(chunks) {
+            console.log("处理音频RMS", this.recordedChunks.map((e) => e.size));
+            // 创建一个Blob对象，它包含所有录制的数据块  this.recordedChunks
+            const blob = new Blob(this.recordedChunks, { 'type': 'audio/ogg; codecs=opus' });
+
+            // 解码音频 Blob  
+            const audioBuffer = await this.audioContext.decodeAudioData(await blob.arrayBuffer());
+
+            let rmsSum = 0;
+            let numSamples = 0;
+
+            // 遍历所有通道和样本  
+            for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                console.log("处理音频RMS最终数据Size", audioBuffer.numberOfChannels);
+                let data = audioBuffer.getChannelData(audioBuffer.numberOfChannels - 1);
+                data = data.slice(data.length - data.length / this.recordedChunks.length, data.length);
+                for (let i = 0; i < data.length; i++) {
+                    const sample = data[i];
+                    rmsSum += sample * sample; // 计算平方和  
+                    numSamples++;
+                }
+            }
+
+            // 计算 RMS  
+            const rms = Math.sqrt(rmsSum / numSamples);
+
+            return rms;
+        }
+
+        /**
+         * 添加音频buffer数据缓存
+         * 缓存会保留10秒内的数据
+         */
+        addRecordedChunks(arrayBuffer) {
+            const index = this.recordedChunks.push(arrayBuffer);
+            // if (index > 1) {
+            //   this.recordedChunks.splice(0, 1);
+            // }
+        }
+
+        // 清除音频缓存
+        clearRecordedChunks() {
+            this.recordedChunks = [];
+        }
+
+        /**
+         * 创建一个MediaRecorder实例来录制音频
+         */
+        createMediaRecorder(stream) {
+            // 创建一个MediaRecorder实例来录制音频  
+            const mediaRecorder = new MediaRecorder(stream);
+            this.mediaRecorder = mediaRecorder;
+
+            // 监听dataavailable事件以收集录制的数据  
+            // mediaRecorder.ondataavailable = (event) => {
+            //   if (event.data.size > 0) {
+            //     console.log("ondataavailable", this.recordedChunks.length);
+
+            //     this.addRecordedChunks(event.data);
+            //   }
+            // };
+
+            // 监听stop事件以处理录制完成  
+            // mediaRecorder.onstop = function () {
+            //   // 创建一个Blob对象，它包含所有录制的数据块  
+            //   const blob = new Blob(recordedChunks, { 'type': 'audio/ogg; codecs=opus' });
+
+            //   // 创建一个指向Blob的URL，该URL可用于在浏览器中播放音频  
+            //   // const audioURL = URL.createObjectURL(blob);  
+
+            //   // 你可以在这里使用audioURL，例如将其设置为audio元素的src属性  
+            //   // const audioElement = document.createElement('audio');  
+            //   // audioElement.controls = true;  
+            //   // audioElement.src = audioURL;  
+            //   // document.body.appendChild(audioElement);  
+
+            //   // 添加到音频处理器
+            //   // window.testAudio(recordedChunks);
+
+            //   // var reader = new FileReader()
+            //   // reader.onload = function() {
+            //   //     console.log(this.result)
+            //   window.testAudio(blob);
+            //   // }
+            //   // reader.readAsArrayBuffer(blob)
+
+            //   // 清理资源（可选）  
+            //   // URL.revokeObjectURL(audioURL);  
+            // };
+        }
+
+        /**
+         * 初始化麦克风权限 判断是否存在权限
+         */
+        getPermissions() {
+            // 请求访问麦克风  
+            return navigator.mediaDevices.getUserMedia({ audio: true })
+                .catch(function (err) {
+                    console.log('无法访问麦克风: ' + err);
+                });
+        }
+    }
+
+    const audios = new AudioTimer();
+
+    audios.on("onRms", (chunks) => {
+        debugger;
+        console.log("触发语音唤醒输入")
+
+        // 创建一个Blob对象，它包含所有录制的数据块  
+        const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+
+        // 创建一个指向Blob的URL，该URL可用于在浏览器中播放音频  
+        const audioURL = URL.createObjectURL(blob);
+
+        const audio = document.getElementsByTagName("audio")[0];
+        audio && audio.remove();
+
+        // 你可以在这里使用audioURL，例如将其设置为audio元素的src属性  
+        const audioElement = document.createElement('audio');
+        audioElement.controls = true;
+        audioElement.src = audioURL;
+        document.body.appendChild(audioElement);
+    })
+
+
+</script>
+
+</html>

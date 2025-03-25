@@ -1,0 +1,87 @@
+import os
+
+import numpy as np
+import pandas as pd
+from fastapi import APIRouter
+
+from easybd.conf import JDBCConf
+from easybd.datax import DataXReaderType
+from easybd.datax.datax_type import DataXWriterType
+from easybd.excel import Excel
+from models.dataxModel import DataxModel
+from models.excelModel import ExcelModel
+from models.fileModel import FileModel
+
+api = APIRouter(prefix="/api", tags=["openapi"])
+@api.get("/")
+def cs():
+    return {"Hello": "World"}
+@api.post("/tools/excel/read_local_file")
+def read_local_file(fileModel: FileModel):
+    file_path = fileModel.filePath
+    if not os.path.isfile(file_path):
+        return {'message': '文件不存在'}
+    # Get sheet names
+    xls = pd.ExcelFile(file_path)
+    sheet_names = xls.sheet_names
+    # Store file path in session (or other state management)
+    return {"sheets": sheet_names}
+
+@api.post("/tools/excel/process_sheet")
+def process_sheet(excelModel: ExcelModel):
+    tables = []
+    df = pd.read_excel(excelModel.filePath, sheet_name=excelModel.sheet)
+    if len(df) == 0:
+        return {"tables": tables}
+    try:
+        tables = _get_tables(df)
+    except Exception as e:
+        print(e)
+        return {"error": "表拆分失败，查看是否每张表空一行"}
+    return {"tables": tables}
+
+@api.post("/tools/excel/datax/process_table")
+def process_table(dataxModel: DataxModel):
+    excelInfo = dataxModel.excelInfo
+    print(dataxModel)
+
+    reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
+    writer_type: DataXWriterType = DataXWriterType.__members__.get(dataxModel.reader)
+
+    source_host = "10.200.10.22"
+    source_port = 5432
+    source_db = "schooletl"
+    source_user = "postgres"
+    source_password = "Pgsql@2024"
+    jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+
+    target_host = "47.97.35.199"
+    target_port = 54321
+    target_db = "tx"
+    target_user = "postgres"
+    target_password = "Pgsql@2024"
+    target_jdbc_conf = JDBCConf("pgsql", target_host, target_port, target_db, target_user, target_password)
+
+    t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
+    datax_json = t.to_datax(reader_type, writer_type, t.table_meta[0], jdbc_conf, target_jdbc_conf)
+
+    return {"datax": datax_json, "sql_ddl": "sql_ddl"}
+
+@api.get("/tools/excel/datax/get_datax_type")
+def get_datax_type():
+    """支持的datax 类型"""
+
+    # datax_reader_type = list(DataxType.get_reader_types().keys())
+    # datax_writer_type = list(DataxType.get_writer_types().keys())
+    return {"datax_reader_type": [i.name for i in list(DataXReaderType)], "datax_writer_type": [i.name for i in list(DataXWriterType)]}
+
+def _get_tables(df: pd.DataFrame) -> list:
+    """
+    获取sheet中所有的表
+    :param df:
+    :return:
+    """
+    table_list = df[['表名','表备注']].drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist()
+    return table_list
+
+
