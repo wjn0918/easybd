@@ -80,8 +80,8 @@ import selectConf from '@c/configCenter/selectConf/index.vue'
 
 const ifShowDatax = ref(false)
 const datax = ref('')
-const readerType = ref('stream')
-const writerType = ref('stream')
+const readerType = ref('STREAM')
+const writerType = ref('STREAM')
 const ddlSql = ref('')
 const input_dir = ref('D:\\wjn\\gitee\\jzDataMigrate\\etl\\jz\\hik\\datax')
 const fullscreenLoading = ref(false)
@@ -95,8 +95,8 @@ const confContentDolphin = ref()
 const dataxRaderTypes = ref(
     [
         {
-            value: 'stream',
-            label: 'stream'
+            value: 'STREAM',
+            label: 'STREAM'
         }
     ]
 )
@@ -104,8 +104,8 @@ const dataxRaderTypes = ref(
 const dataxWriterTypes = ref(
     [
         {
-            value: 'stream',
-            label: 'stream'
+            value: 'STREAM',
+            label: 'STREAM'
         }
     ]
 )

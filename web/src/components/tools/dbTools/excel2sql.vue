@@ -94,10 +94,12 @@ const downloadTemplate = () => {
 }
 
 
-const changeTable = (selectTableName) => {
+const changeTable = (selectTableName, f, s) => {
     closeSql()
     selectTable.value = selectTableName
     DBToolsApi.processTable({
+        "filePath": f,
+        "sheet": s,
         "table": selectTableName
     }).then((res) => {
         console.log(res)

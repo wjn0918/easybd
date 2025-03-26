@@ -5,6 +5,7 @@ from easybd.datax.template.reader.template_reader_hdfs import TemplateReaderHdfs
 from easybd.datax.template.reader.template_reader_hikapi import TemplateReaderHikapi
 from easybd.datax.template.reader.template_reader_mysql import TemplateReaderMysql
 from easybd.datax.template.reader.template_reader_postgresql import TemplateReaderPostgresql
+from easybd.datax.template.reader.template_reader_sr import TemplateReaderSr
 from easybd.datax.template.reader.template_reader_stream import TemplateReaderStream
 from easybd.datax.template.writer.template_writer_hdfs import TempalteWriterHdfs
 from easybd.datax.template.writer.template_writer_mysql import TemplateWriterMysql
@@ -17,6 +18,7 @@ class DataXReaderType(Enum):
     HDFS = TemplateReaderHdfs()
     PGSQL = TemplateReaderPostgresql()
     MYSQL = TemplateReaderMysql()
+    SRAPI = TemplateReaderSr()
 
 
 class DataXWriterType(Enum):

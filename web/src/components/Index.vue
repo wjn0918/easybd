@@ -46,7 +46,7 @@
       </el-icon>
       <span>其他工具</span>
     </el-menu-item>
-    <el-menu-item index="/configCenter">
+    <el-menu-item index="/dbCenter">
       <el-icon>
         <Coin />
       </el-icon>

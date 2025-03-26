@@ -47,6 +47,8 @@ class Excel:
     def to_json_array2(self):
         return self.to_json_array(self.table_meta[0])
 
+    def to_dml2(self, include_null=False):
+        return self.to_dml(self.table_meta[0], include_null)
     def to_dml(self, table: ETLTableInfo, include_null=False):
         target_table_name = table.table_info.table_name
         table_fields = table.source_fields  # 最终查询字段

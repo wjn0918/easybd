@@ -1,4 +1,6 @@
+import logging
 import os
+import sys
 
 import numpy as np
 import pandas as pd
@@ -7,6 +9,7 @@ from fastapi import APIRouter
 from easybd.conf import JDBCConf
 from easybd.datax import DataXReaderType
 from easybd.datax.datax_type import DataXWriterType
+from easybd.db.ddl import DDLType
 from easybd.excel import Excel
 from models.dataxModel import DataxModel
 from models.excelModel import ExcelModel
@@ -40,13 +43,22 @@ def process_sheet(excelModel: ExcelModel):
         return {"error": "表拆分失败，查看是否每张表空一行"}
     return {"tables": tables}
 
+@api.post('/tools/db/process_table')
+def db_process_table(excelInfo: ExcelModel):
+
+    t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
+    t.to_dml2()
+    sql_dml = t.to_dml2()
+    sql_ddl = t.to_ddl2(DDLType.PgSql)
+    return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables"}
+
 @api.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):
     excelInfo = dataxModel.excelInfo
     print(dataxModel)
 
     reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
-    writer_type: DataXWriterType = DataXWriterType.__members__.get(dataxModel.reader)
+    writer_type: DataXWriterType = DataXWriterType.__members__.get(dataxModel.writer)
 
     source_host = "10.200.10.22"
     source_port = 5432
@@ -64,15 +76,12 @@ def process_table(dataxModel: DataxModel):
 
     t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
     datax_json = t.to_datax(reader_type, writer_type, t.table_meta[0], jdbc_conf, target_jdbc_conf)
-
-    return {"datax": datax_json, "sql_ddl": "sql_ddl"}
+    ddl_json = t.to_ddl2(DDLType.PgSql)
+    return {"datax": datax_json, "sql_ddl": ddl_json}
 
 @api.get("/tools/excel/datax/get_datax_type")
 def get_datax_type():
     """支持的datax 类型"""
-
-    # datax_reader_type = list(DataxType.get_reader_types().keys())
-    # datax_writer_type = list(DataxType.get_writer_types().keys())
     return {"datax_reader_type": [i.name for i in list(DataXReaderType)], "datax_writer_type": [i.name for i in list(DataXWriterType)]}
 
 def _get_tables(df: pd.DataFrame) -> list:
