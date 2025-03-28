@@ -15,11 +15,11 @@ from models.dataxModel import DataxModel
 from models.excelModel import ExcelModel
 from models.fileModel import FileModel
 
-api = APIRouter(prefix="/api", tags=["openapi"])
-@api.get("/")
+router = APIRouter(prefix="/api", tags=["openapi"])
+@router.get("/")
 def cs():
     return {"Hello": "World"}
-@api.post("/tools/excel/read_local_file")
+@router.post("/tools/excel/read_local_file")
 def read_local_file(fileModel: FileModel):
     file_path = fileModel.filePath
     if not os.path.isfile(file_path):
@@ -30,7 +30,7 @@ def read_local_file(fileModel: FileModel):
     # Store file path in session (or other state management)
     return {"sheets": sheet_names}
 
-@api.post("/tools/excel/process_sheet")
+@router.post("/tools/excel/process_sheet")
 def process_sheet(excelModel: ExcelModel):
     tables = []
     df = pd.read_excel(excelModel.filePath, sheet_name=excelModel.sheet)
@@ -43,7 +43,7 @@ def process_sheet(excelModel: ExcelModel):
         return {"error": "表拆分失败，查看是否每张表空一行"}
     return {"tables": tables}
 
-@api.post('/tools/db/process_table')
+@router.post('/tools/db/process_table')
 def db_process_table(excelInfo: ExcelModel):
 
     t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
@@ -52,7 +52,7 @@ def db_process_table(excelInfo: ExcelModel):
     sql_ddl = t.to_ddl2(DDLType.PgSql)
     return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables"}
 
-@api.post("/tools/excel/datax/process_table")
+@router.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):
     excelInfo = dataxModel.excelInfo
     print(dataxModel)
@@ -79,7 +79,7 @@ def process_table(dataxModel: DataxModel):
     ddl_json = t.to_ddl2(DDLType.PgSql)
     return {"datax": datax_json, "sql_ddl": ddl_json}
 
-@api.get("/tools/excel/datax/get_datax_type")
+@router.get("/tools/excel/datax/get_datax_type")
 def get_datax_type():
     """支持的datax 类型"""
     return {"datax_reader_type": [i.name for i in list(DataXReaderType)], "datax_writer_type": [i.name for i in list(DataXWriterType)]}
@@ -93,4 +93,9 @@ def _get_tables(df: pd.DataFrame) -> list:
     table_list = df[['表名','表备注']].drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist()
     return table_list
 
-
+@router.get('/tools/db/download')
+def download_template():
+    # 假设模板文件名为 template.xlsx，位于服务器的某个路径下
+    template_file_path = os.path.join(current_app.config['root_path'],"static/template/模板.xlsx")
+    # 使用 Flask 的 send_file 函数发送文件
+    return send_file(template_file_path, as_attachment=True)

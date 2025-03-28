@@ -33,6 +33,7 @@ class DDLPgSql:
         all_field_comment = "\r\n".join(fields_comment)
         sqls = f"""
 -- {table_name}
+DROP TABLE public.{table_name};
 CREATE TABLE public.{table_name}
 (
     {all_field}
