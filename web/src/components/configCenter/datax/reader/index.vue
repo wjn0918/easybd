@@ -15,7 +15,7 @@
 import { onMounted, ref, computed, defineAsyncComponent } from "vue"
 import { getTemplate, DBToolsApi, ExcelApi } from '@/api/api.js'
 
-const selectType = ref('stream')
+const selectType = ref('STREAM')
 const supportTypes = ref([])
 
 const formSelect = ref(null)

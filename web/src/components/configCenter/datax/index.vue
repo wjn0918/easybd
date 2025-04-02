@@ -1,25 +1,17 @@
 <template>
     <div>
-
     </div>
     <reader-conf></reader-conf>
-    <!-- <writer-conf></writer-conf> -->
-        <div v-if="false">
-            <div>
+    <writer-conf></writer-conf>
+    <div v-if="true">
+        <div>
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
                 <el-form-item label="配置名称">
                     <el-input v-model="formInline.confName" placeholder="请输入配置名称" clearable />
                 </el-form-item>
-                <el-form-item label="host">
-                    <el-input v-model="formInline.host" placeholder="host" clearable />
+                <el-form-item label="配置内容">
+                    <el-input v-model="formInline.confContent" placeholder="配置内容" clearable />
                 </el-form-item>
-                <el-form-item label="appKey">
-                    <el-input v-model="formInline.appKey" placeholder="appKey" clearable />
-                </el-form-item>
-                <el-form-item label="appSecret">
-                    <el-input v-model="formInline.appSecret" placeholder="appSecret" clearable />
-                </el-form-item>
-
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">添加</el-button>
                 </el-form-item>
@@ -45,9 +37,9 @@
         </div>
         <div>
             <el-table :data="confData" style="width: 100%">
-                <el-table-column prop="conf_type" label="配置类型" width="180" />
-                <el-table-column prop="conf_name" label="配置名称" width="180" />
-                <el-table-column prop="conf_content" label="配置内容" width="180" />
+                <el-table-column prop="confType" label="配置类型" width="180" />
+                <el-table-column prop="confName" label="配置名称" width="180" />
+                <el-table-column prop="confContent" label="配置内容" width="180" />
                 <el-table-column fixed="right" label="Operations" min-width="120">
                     <template #default="scope">
                         <el-button link type="primary" size="small" @click="handleClick">
@@ -61,14 +53,11 @@
 
             <el-dialog v-model="dialogFormVisible" title="Shipping address" width="500">
                 <el-form :model="editFormInline">
-                    <el-form-item label="host">
-                        <el-input v-model="editFormInline.host" placeholder="host" clearable />
-                    </el-form-item>
-                    <el-form-item label="appKey">
-                        <el-input v-model="editFormInline.appKey" placeholder="appKey" clearable />
+                    <el-form-item label="confName">
+                        <el-input v-model="editFormInline.confName" placeholder="confName" clearable />
                     </el-form-item>
                     <el-form-item label="appSecret">
-                        <el-input v-model="editFormInline.appSecret" placeholder="appSecret" clearable />
+                        <el-input v-model="editFormInline.confContent" placeholder="confContent" clearable />
                     </el-form-item>
                 </el-form>
                 <template #footer>
@@ -81,8 +70,7 @@
                 </template>
             </el-dialog>
         </div>
-        </div>
-        
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -102,14 +90,12 @@ const formLabelWidth = '140px'
 const formInline = reactive({
     confType: 'datax',
     confName: '',
-    host: '',
-    appKey: '',
-    appSecret: ''
+    confContent: ''
 })
 const editFormInline = ref({
-    host: '',
-    appKey: '',
-    appSecret: ''
+    confType: 'datax',
+    confName: '',
+    confContent: ''
 })
 const editRow = ref()
 const changeConfType = () => {
@@ -126,7 +112,8 @@ const clearAllConf = () => {
 }
 
 const editConf = (row) => {
-    editFormInline.value = JSON.parse(row['conf_content'])
+    console.log(row)
+    editFormInline.value = row
     dialogFormVisible.value = true
     editRow.value = row
 }
@@ -182,15 +169,14 @@ onMounted(() => {
 const clearForm = () => {
     // 清空表单
     formInline.confName = ""
-    formInline.host = ''
-    formInline.appKey = ''
-    formInline.appSecret = ''
+    formInline.confContent = ''
 }
 
 const onSubmit = () => {
     ConfigApi.createConfig({
-        "confType": formInline.confName,
-        "confContent": `{"host": "${formInline.host}", "appKey": "${formInline.appKey}", "appSecret": "${formInline.appSecret}"}`
+        "confType": formInline.confType,
+        "confName": formInline.confName,
+        "confContent": formInline.confContent
     }).then((res) => {
         console.log(res.data)
         refreshConfData()

@@ -83,7 +83,7 @@ const ifShowSql = ref(false)
 const sourceTables = ref([])
 
 const formInline = reactive({
-    filePath: `D:\\wjn\\work_info\\docs\\src\\表结构_业务系统.xlsx`
+    filePath: `D:\\wjn\\work_info\\docs\\src\\tx\\表结构_特校.xlsx`
 })
 
 const onSubmit = () => {

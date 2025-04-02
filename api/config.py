@@ -1,17 +1,18 @@
+import uuid
+
 from fastapi import APIRouter
 
-from db import SessionDep
-from models.config import DBConfigModel
+from db import SessionDep, select, ConfigModel
 
 router = APIRouter(prefix="/api/config", tags=["config"])
 
 
 @router.post("/create")
-def conf_create(conf:DBConfigModel, session: SessionDep):
-    db_hero = DBConfigModel.model_validate(conf)
-    session.add(db_hero)
+def conf_create(conf:ConfigModel, session: SessionDep):
+    conf.id = str(uuid.uuid4())
+    session.add(conf)
     session.commit()
-    session.refresh(db_hero)
+    session.refresh(conf)
     return {"message": "创建成功"}
 
 
@@ -22,9 +23,10 @@ def conf_select(session: SessionDep):
     return c
 
 
-@router.get("/select/<conf_type>")
+@router.get("/select/{conf_type}")
 def conf_select_by_conf_type(conf_type, session: SessionDep):
-    config_mytools = session.get(ConfigModel.confType, conf_type=conf_type)
+
+    config_mytools = session.exec(select(ConfigModel).where(ConfigModel.confType == conf_type)).all()
     return config_mytools
 #
 #
@@ -35,10 +37,8 @@ def conf_select_by_conf_type(conf_type, session: SessionDep):
 #     return jsonify({"message": "删除成功"}), 200
 #
 #
-# @router.route('/update/<int:id>', methods=['GET', "POST"])
-# def conf_update(id: int):
-#     conf_data = db.get_or_404(ConfigMyTools, id)
-#     data = request.get_json()
-#     conf_data.conf_content = data['confContent']
-#     db.session.commit()
-#     return jsonify({"message": "更新成功"}), 200
+@router.post('/update/{id}')
+def conf_update(id: int):
+
+    return {"message": "更新成功"}
+

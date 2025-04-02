@@ -21,7 +21,7 @@ class DDLPgSql:
                 column_type = "int"
             elif tft_upper == "BOOL":
                 column_type = "BOOLEAN"
-            elif tft_upper in ("STRING", 'MEDIUMTEXT') or tft_upper.startswith("TIMESTAMPTZ"):
+            elif tft_upper in ("STRING", 'MEDIUMTEXT') or tft_upper.startswith("TIMESTAMPTZ") or tft_upper.startswith("VARCHAR"):
                 column_type = "varchar(255)"
             else:
                 column_type = "text"

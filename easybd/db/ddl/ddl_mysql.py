@@ -23,6 +23,8 @@ class DDlMysql:
                 column_type = "BOOLEAN"
             elif tft_upper in ("STRING", 'MEDIUMTEXT') or tft_upper.startswith("TIMESTAMPTZ"):
                 column_type = "varchar(255)"
+            elif tft_upper.startswith("VARCHAR"):
+                column_type = tft_upper
             else:
                 column_type = "text"
             field = f"{column_name} {column_type} COMMENT '{column_comment}'"

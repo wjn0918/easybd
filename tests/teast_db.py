@@ -10,7 +10,7 @@ from easybd.db import PostgreSql
 
 def test_pg():
     pg = PostgreSql("192.168.3.205", "5432", "postgres", "Pgsql@2024", "park-preview", "public",
-                    table_names=['t_vehicle_car_group'])
+                    table_names=["t_log_book_generated_record"])
     pg.table_info_to_excel("demo.xlsx")
 
 
