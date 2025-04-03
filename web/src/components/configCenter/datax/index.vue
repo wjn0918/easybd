@@ -122,7 +122,7 @@ const updateEdit = () => {
     var updateObj = editFormInline.value
     ConfigApi.updateConfig(editRow.value.id,
         {
-            "confContent": `{"host": "${updateObj.host}", "appKey": "${updateObj.appKey}", "appSecret": "${updateObj.appSecret}"}`
+        "confContent": updateObj.confContent
         }
     ).then((res) => {
         if (res.status === 200) {

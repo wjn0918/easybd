@@ -1,8 +1,8 @@
 import uuid
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from db import SessionDep, select, ConfigModel
+from db import SessionDep, select, ConfigModel, ConfigModelUpdate
 
 router = APIRouter(prefix="/api/config", tags=["config"])
 
@@ -19,7 +19,7 @@ def conf_create(conf:ConfigModel, session: SessionDep):
 
 @router.get("/select")
 def conf_select(session: SessionDep):
-    c = session.get()
+    c = session.exec(select(ConfigModel)).all()
     return c
 
 
@@ -38,7 +38,14 @@ def conf_select_by_conf_type(conf_type, session: SessionDep):
 #
 #
 @router.post('/update/{id}')
-def conf_update(id: int):
-
+def conf_update(id, update_model:ConfigModelUpdate, session: SessionDep):
+    print(update_model)
+    conf_model = session.get(ConfigModel, id)
+    if not conf_model:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    conf_model.sqlmodel_update(update_model)
+    session.add(conf_model)
+    session.commit()
+    session.refresh(conf_model)
     return {"message": "更新成功"}
 

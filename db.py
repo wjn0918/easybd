@@ -1,5 +1,6 @@
 from typing import Union, Annotated
 from fastapi import Depends
+from pydantic import BaseModel
 
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
@@ -15,6 +16,10 @@ class ConfigModel(SQLModel, table=True):
     id: str= Field(default=None, primary_key=True)
     confType: str = Field()
     confName: str = Field()
+    confContent: str = Field()
+
+
+class ConfigModelUpdate(BaseModel):
     confContent: str = Field()
 
 def create_db_and_tables():

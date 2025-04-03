@@ -19,7 +19,7 @@ const confDataDatax = ref([
     {
         key: '1',
         value: 'Option1',
-        label: 'Option1',
+        label: 'Option1222',
     }
 ])
 const confDataDolphin = ref([])
@@ -29,14 +29,15 @@ const emit = defineEmits(['invoke-change-conf-datax', 'invoke-change-conf-dolphi
 onMounted(() => {
     ConfigApi.getConfig().then((res) => {
 
-        const groupedAndMappedData = _.mapValues(_.groupBy(res.data, 'conf_type'), items =>
+        const groupedAndMappedData = _.mapValues(_.groupBy(res.data, 'confType'), items =>
             _.map(items, item => ({
-                value: item.conf_content,
-                label: item.conf_name
+                value: item.confContent,
+                label: item.confName
             }))
         );
 
         confDataDatax.value = groupedAndMappedData['datax'] || []
+        console.log(confDataDatax.value)
         confDataDolphin.value = groupedAndMappedData['dolphinscheduler'] || []
     })
     

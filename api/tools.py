@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import json
 
 import numpy as np
 import pandas as pd
@@ -52,10 +53,27 @@ def db_process_table(excelInfo: ExcelModel):
     sql_ddl = t.to_ddl2(DDLType.PgSql)
     return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables"}
 
+
 @router.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):
+    """
+    {
+    "readerJdbcUrl": "jdbc:postgresql://10.200.10.22:5432/schooletl",
+    "readerUserName": "postgres",
+    "readerPassword": "Pgsql@2024",
+    "writerJdbcUrl": "jdbc:postgresql://192.168.3.205:5432/schooletl",
+    "writerUserName": "postgres",
+    "writerPassword": "Pgsql@2024"
+
+}
+    :param dataxModel:
+    :return:
+    """
     excelInfo = dataxModel.excelInfo
     print(dataxModel)
+    datax_conf = json.loads(dataxModel.parameter)
+    print(datax_conf)
+
 
     reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
     writer_type: DataXWriterType = DataXWriterType.__members__.get(dataxModel.writer)
@@ -77,6 +95,18 @@ def process_table(dataxModel: DataxModel):
     t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
     datax_json = t.to_datax(reader_type, writer_type, t.table_meta[0], jdbc_conf, target_jdbc_conf)
     ddl_json = t.to_ddl2(DDLType.PgSql)
+
+    # 数据库更改
+    if reader_type == DataXReaderType.PGSQL:
+        datax_json = json.loads(datax_json)
+        datax_json['job']['content'][0]['reader']['parameter']['connection'][0]['jdbcUrl'][0] = datax_conf['readerJdbcUrl']
+        datax_json['job']['content'][0]['reader']['parameter']['username'] = datax_conf['readerUserName']
+        datax_json['job']['content'][0]['reader']['parameter']['password'] = datax_conf['readerPassword']
+        datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = datax_conf['writerJdbcUrl']
+        datax_json['job']['content'][0]['writer']['parameter']['username'] = datax_conf['writerUserName']
+        datax_json['job']['content'][0]['writer']['parameter']['password'] = datax_conf['writerPassword']
+        datax_json = json.dumps(datax_json)
+
     return {"datax": datax_json, "sql_ddl": ddl_json}
 
 @router.get("/tools/excel/datax/get_datax_type")
