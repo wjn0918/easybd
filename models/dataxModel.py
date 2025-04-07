@@ -8,5 +8,6 @@ from models.excelModel import ExcelModel
 class DataxModel(BaseModel):
     reader: str
     writer: str
+    ddlType: str
     parameter: Optional[str] = None
     excelInfo: Optional[ExcelModel] = None

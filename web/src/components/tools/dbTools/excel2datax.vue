@@ -7,6 +7,18 @@
                         @invoke-change-conf-dolphin="changeConfDolphin"></select-conf>
                 </el-row>
 
+                <el-row>
+                    <el-col :span="6">
+                        选择DDLType
+                    </el-col>
+                    <el-col :span="8">
+                        <el-select v-model="ddlType" placeholder="请选择DDLType" size="large">
+                            <el-option v-for="item in ddlTypes" :key="item.value" :label="item.label"
+                                :value="item.value" />
+                        </el-select>
+                    </el-col>
+                </el-row>
+
                 <el-row :gutter="30">
                     <el-col :span="6">
                         选择reader/writer
@@ -80,6 +92,7 @@ import selectConf from '@c/configCenter/selectConf/index.vue'
 
 const ifShowDatax = ref(false)
 const datax = ref('')
+const ddlType = ref('MYSQL')
 const readerType = ref('STREAM')
 const writerType = ref('STREAM')
 const ddlSql = ref('')
@@ -110,6 +123,15 @@ const dataxWriterTypes = ref(
     ]
 )
 
+const ddlTypes = ref(
+    [
+        {
+            value: 'STREAM',
+            label: 'STREAM'
+        }
+    ]
+)
+
 onMounted(() => {
     ExcelApi.getDataxTypes().then((res) => {
         dataxRaderTypes.value = res.data['datax_reader_type'].map(item => (
@@ -119,6 +141,12 @@ onMounted(() => {
             }
         ))
         dataxWriterTypes.value = res.data['datax_writer_type'].map(item => (
+            {
+                value: item,
+                label: item
+            }
+        ))
+        ddlTypes.value = res.data['ddl_type'].map(item => (
             {
                 value: item,
                 label: item
@@ -153,14 +181,15 @@ const ok = () => {
     ExcelApi.processTable2Datax({
         "reader": readerType.value,
         "writer": writerType.value,
+        "ddlType": ddlType.value,
         "parameter": confContentDatax.value,
         "confDolphin": confContentDolphin.value,
-        "excelInfo":{
+        "excelInfo": {
             "filePath": filePath.value,
             "sheet": sheet.value,
             "table": selectTable.value
         }
-      
+
     }).then((res) => {
         console.log(res.data)
         ddlSql.value = res.data.sql_ddl

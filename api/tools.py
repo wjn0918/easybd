@@ -78,6 +78,8 @@ def process_table(dataxModel: DataxModel):
     reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
     writer_type: DataXWriterType = DataXWriterType.__members__.get(dataxModel.writer)
 
+    ddl_type: DDLType = DDLType.__members__.get(dataxModel.ddlType)
+
     source_host = "10.200.10.22"
     source_port = 5432
     source_db = "schooletl"
@@ -94,10 +96,10 @@ def process_table(dataxModel: DataxModel):
 
     t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
     datax_json = t.to_datax(reader_type, writer_type, t.table_meta[0], jdbc_conf, target_jdbc_conf)
-    ddl_json = t.to_ddl2(DDLType.PgSql)
+    ddl_json = t.to_ddl2(ddl_type)
 
     # 数据库更改
-    if reader_type == DataXReaderType.PGSQL:
+    if reader_type == DataXReaderType.PGSQL or reader_type == DataXReaderType.MYSQL:
         datax_json = json.loads(datax_json)
         datax_json['job']['content'][0]['reader']['parameter']['connection'][0]['jdbcUrl'][0] = datax_conf['readerJdbcUrl']
         datax_json['job']['content'][0]['reader']['parameter']['username'] = datax_conf['readerUserName']
@@ -112,7 +114,11 @@ def process_table(dataxModel: DataxModel):
 @router.get("/tools/excel/datax/get_datax_type")
 def get_datax_type():
     """支持的datax 类型"""
-    return {"datax_reader_type": [i.name for i in list(DataXReaderType)], "datax_writer_type": [i.name for i in list(DataXWriterType)]}
+    return {
+        "datax_reader_type": [i.name for i in list(DataXReaderType)],
+        "datax_writer_type": [i.name for i in list(DataXWriterType)],
+        "ddl_type": [i.name for i in list(DDLType)]
+    }
 
 def _get_tables(df: pd.DataFrame) -> list:
     """
