@@ -1,6 +1,15 @@
 <template>
-    <div>
+<div>
+ <el-row>
+                    <select-conf @invoke-change-conf-datax="changeConfDatax"
+                        @invoke-change-conf-dolphin="changeConfDolphin"
+                        @invoke-change-conf-common="changeConfCommon"
+                        @invoke-change-conf-jdbc="changeConfJdbc"
+                        ></select-conf>
+                </el-row>
+</div>
 
+    <div>
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="请输入文件地址">
                 <el-input autosize type="textarea" v-model="formInline.filePath" placeholder="请输入文件地址" clearable />
@@ -54,7 +63,7 @@
 
 
             <el-col :span="12">
-                <slot name="scripts" :ifShowSql=ifShowSql></slot>
+                <slot name="scripts" :ifShowSql=ifShowSql :confContentJdbc=confContentJdbc></slot>
             </el-col>
 
         </el-row>
@@ -70,6 +79,7 @@ import { ref, defineEmits, reactive } from 'vue'
 import type { UploadInstance, UploadProps, UploadRawFile } from 'element-plus'
 import { genFileId } from 'element-plus'
 import { getTemplate, DBToolsApi, ExcelApi } from '@/api/api.js'
+import selectConf from '@c/configCenter/selectConf/index.vue'
 
 const sheets = ref([])
 const selectSheet = ref('')
@@ -81,10 +91,31 @@ const ddlSql = ref('')
 const dmlSql = ref('')
 const ifShowSql = ref(false)
 const sourceTables = ref([])
+const confContentDatax = ref()
+const confContentJdbc = ref()
 
 const formInline = reactive({
     filePath: `D:\\wjn\\work_info\\docs\\src\\tx\\表结构_特校.xlsx`
 })
+
+const changeConfCommon = (param) => {
+    console.log(`${param}` )
+    formInline.filePath = param
+
+}
+
+const changeConfJdbc = (param) => {
+    console.log(`${param}` )
+    confContentJdbc.value = param
+
+}
+const changeFilePath = (path) =>{
+    this.formInline.filePath.value = path
+}
+const changeConfDatax = (param) => {
+    confContentDatax.value = param
+    console.log(confContentDatax.value)
+}
 
 const onSubmit = () => {
     ExcelApi.readLocalFile(formInline).then((res) => {
@@ -143,8 +174,8 @@ const changeSheet = () => {
 }
 
 const changeTable = () => {
-    console.log(selectTable.value, formInline.filePath, selectSheet.value)
-    emit('invoke-change-table', selectTable.value, formInline.filePath, selectSheet.value);
+    console.log(selectTable.value, formInline.filePath, selectSheet.value, confContentDatax.value)
+    emit('invoke-change-table', selectTable.value, formInline.filePath, selectSheet.value, confContentDatax.value);
 }
 
 </script>

@@ -51,7 +51,8 @@ def db_process_table(excelInfo: ExcelModel):
     t.to_dml2()
     sql_dml = t.to_dml2()
     sql_ddl = t.to_ddl2(DDLType.PgSql)
-    return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables"}
+    j = t.to_field_list()
+    return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables", "fieldComment": j}
 
 
 @router.post("/tools/excel/datax/process_table")
@@ -96,6 +97,7 @@ def process_table(dataxModel: DataxModel):
 
     t = Excel(excelInfo.filePath, sheet_name=excelInfo.sheet, table_name=excelInfo.table)
     datax_json = t.to_datax(reader_type, writer_type, t.table_meta[0], jdbc_conf, target_jdbc_conf)
+    print(ddl_type)
     ddl_json = t.to_ddl2(ddl_type)
 
     # 数据库更改

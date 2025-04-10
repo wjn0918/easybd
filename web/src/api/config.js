@@ -45,11 +45,11 @@ class Config extends Base {
         )
     }
 
-    deleteConfig(){
+    deleteConfig(id){
         return axios.request(
             {
-                url: `${this.url}/delete`,
-                method: 'get',
+                url: `${this.url}/${id}`,
+                method: 'delete',
                 headers: {
                     'Content-Type': 'application/json'
                 }

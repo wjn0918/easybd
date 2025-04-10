@@ -2,10 +2,12 @@
     <div>
         <excel-tools @invoke-change-table="changeTable">
             <template #scripts="">
-                <el-row>
+                <!-- <el-row>
                     <select-conf @invoke-change-conf-datax="changeConfDatax"
-                        @invoke-change-conf-dolphin="changeConfDolphin"></select-conf>
-                </el-row>
+                        @invoke-change-conf-dolphin="changeConfDolphin"
+                        @invoke-change-conf-common="changeConfCommon"
+                        ></select-conf>
+                </el-row> -->
 
                 <el-row>
                     <el-col :span="6">
@@ -78,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, h, onMounted } from 'vue'
+import { ref, h, onMounted,defineEmits } from 'vue'
 import useClipboard from 'vue-clipboard3'
 import { getTemplate, DBToolsApi, ExcelApi } from '@/api/api.js'
 import ExcelTools from './exceltools.vue'
@@ -88,11 +90,9 @@ import selectConf from '@c/configCenter/selectConf/index.vue'
 
 
 
-
-
 const ifShowDatax = ref(false)
 const datax = ref('')
-const ddlType = ref('MYSQL')
+const ddlType = ref('Mysql')
 const readerType = ref('STREAM')
 const writerType = ref('STREAM')
 const ddlSql = ref('')
@@ -104,6 +104,7 @@ const selectTable = ref('')
 const checkstate = ref(false)
 const confContentDatax = ref()
 const confContentDolphin = ref()
+const confContentCommon= ref()
 
 const dataxRaderTypes = ref(
     [
@@ -155,12 +156,14 @@ onMounted(() => {
     })
 })
 
-const changeConfDatax = (param) => {
-    confContentDatax.value = param
-}
+// const changeConfDatax = (param) => {
+//     confContentDatax.value = param
+//     console.log(confContentDatax.value)
+// }
 const changeConfDolphin = (param) => {
     confContentDolphin.value = param
 }
+
 
 
 const closeSql = () => {
@@ -169,16 +172,17 @@ const closeSql = () => {
 }
 
 
-const changeTable = (selectTableName, f, s) => {
+const changeTable = (selectTableName, f, s, c) => {
     filePath.value = f
     sheet.value = s
     selectTable.value = selectTableName
     checkstate.value = true
+    confContentDatax.value = c
     closeSql()
 }
 
 const ok = () => {
-    ExcelApi.processTable2Datax({
+    var body = {
         "reader": readerType.value,
         "writer": writerType.value,
         "ddlType": ddlType.value,
@@ -189,8 +193,12 @@ const ok = () => {
             "sheet": sheet.value,
             "table": selectTable.value
         }
+    }
 
-    }).then((res) => {
+    console.log(
+body
+    )
+    ExcelApi.processTable2Datax(body).then((res) => {
         console.log(res.data)
         ddlSql.value = res.data.sql_ddl
         datax.value = JSON.stringify(JSON.parse(res.data.datax), null, 2)

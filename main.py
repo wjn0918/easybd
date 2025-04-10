@@ -6,7 +6,7 @@ from db import create_db_and_tables
 
 app = FastAPI()
 
-from api import config, tools
+from api import config, tools,db
 
 
 
@@ -26,5 +26,6 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 app.include_router(config.router)
 app.include_router(tools.router)
+app.include_router(db.router)
 
 

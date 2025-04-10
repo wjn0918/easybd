@@ -17,7 +17,16 @@
                         <el-col :span="12">
                             <div>
                                 <button @click="() => handleCopy(ddlSql)">复制DDL</button>
+                                <button @click="() => execDDL(ddlSql)">执行DDL</button>
                                 <highlightjs class="sql" language="SQL" :code="ddlSql"></highlightjs>
+                            </div>
+                        </el-col>
+                    </el-row>
+                     <el-row :gutter="30">
+                        <el-col :span="12">
+                            <div>
+                                <button @click="() => handleCopy(fieldComment)">复制fields</button>
+                                <highlightjs class="sql" language="SQL" :code="fieldComment"></highlightjs>
                             </div>
                         </el-col>
                     </el-row>
@@ -42,12 +51,13 @@ import useClipboard from 'vue-clipboard3'
 import { getTemplate, DBToolsApi, ExcelApi } from '@/api/api.js'
 import ExcelTools from './exceltools.vue'
 
-
+const confContentJdbc = ref('')
 const ifShowSql = ref(false)
 const selectTable = ref('')
 const sourceTables = ref([])
 const ddlSql = ref('')
 const dmlSql = ref('')
+const fieldComment = ref('')
 const fullscreenLoading = ref(false)
 const input_dir = ref('D:\\wjn\\gitee\\jzDataMigrate\\etl\\jz')
 
@@ -55,6 +65,7 @@ const input_dir = ref('D:\\wjn\\gitee\\jzDataMigrate\\etl\\jz')
 const closeSql = () => {
     ddlSql.value = ""
     dmlSql.value = ""
+    fieldComment.value = ""
     ifShowSql.value = false
 }
 
@@ -106,6 +117,7 @@ const changeTable = (selectTableName, f, s) => {
         ddlSql.value = res.data.sql
         dmlSql.value = res.data.sqlQuery
         sourceTables.value = res.data.sourceTables
+        fieldComment.value = res.data.fieldComment
         ifShowSql.value = true
     })
 }
@@ -120,7 +132,11 @@ const handleCopy = (copyObj) => {
         console.error('复制失败')
     }
 }
+const execDDL = (ddl) =>{
+    // console.log(ddl)
+    console.log(confContentJdbc)
 
+}
 
 
 const startBuild = () => {

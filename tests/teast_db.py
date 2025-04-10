@@ -9,8 +9,8 @@ def test_mysql():
 from easybd.db import PostgreSql
 
 def test_pg():
-    pg = PostgreSql("172.31.24.131", "5432", "postgres", "Pgsql@2024", "postgres", "public",
-                    table_names=["t_dorm_student"])
+    pg = PostgreSql("192.168.3.205", "5432", "postgres", "Pgsql@2024", "park-preview", "public",
+                    table_names=["t_dict", "t_dict_option"])
     pg.table_info_to_excel("demo.xlsx")
 
 

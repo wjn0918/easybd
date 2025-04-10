@@ -71,6 +71,18 @@
         </el-icon>
         <span>dolphinscheduler</span>
       </el-menu-item>
+      <el-menu-item index="/configCenter/common">
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>common</span>
+      </el-menu-item>
+       <el-menu-item index="/configCenter/jdbc">
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>jdbc</span>
+      </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>

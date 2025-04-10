@@ -28,13 +28,16 @@ def conf_select_by_conf_type(conf_type, session: SessionDep):
 
     config_mytools = session.exec(select(ConfigModel).where(ConfigModel.confType == conf_type)).all()
     return config_mytools
-#
-#
-# @router.route('/delete', methods=["GET"])
-# def conf_delete():
-#     ConfigMyTools.query.delete()
-#     db.session.commit()
-#     return jsonify({"message": "删除成功"}), 200
+
+
+@router.delete('/{id}')
+def conf_delete(id, session: SessionDep):
+    confdel = session.get(ConfigModel, id)
+    if not confdel:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    session.delete(confdel)
+    session.commit()
+    return {"ok": True}
 #
 #
 @router.post('/update/{id}')

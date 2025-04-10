@@ -47,6 +47,14 @@ class Excel:
     def to_json_array2(self):
         return self.to_json_array(self.table_meta[0])
 
+    def to_field_list(self):
+        r = []
+        ti = self.table_meta[0].table_info
+        for i,f in enumerate(ti.table_fields):
+            a = f"\"{f} -- {ti.table_fields_comment[i]}\""
+            r.append(a)
+        return "\n"+ ",\n".join(r)
+
     def to_dml2(self, include_null=False):
         return self.to_dml(self.table_meta[0], include_null)
     def to_dml(self, table: ETLTableInfo, include_null=False):

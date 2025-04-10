@@ -56,6 +56,16 @@ const routes = [
         path: 'dolphinscheduler',
         name: 'dolphinscheduler',
         component: () => import("@/components/configCenter/dolphinscheduler/index.vue")
+      },
+      {
+        path: 'common',
+        name: 'common',
+        component: () => import("@/components/configCenter/common/index.vue")
+      },
+      {
+        path: 'jdbc',
+        name: 'jdbc',
+        component: () => import("@/components/configCenter/jdbc/index.vue")
       }
     ]
     
