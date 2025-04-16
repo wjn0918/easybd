@@ -2,11 +2,14 @@ import logging
 import os
 import sys
 import json
+import uuid
 
 import numpy as np
 import pandas as pd
-from fastapi import APIRouter
+from fastapi import APIRouter,File,UploadFile,HTTPException
+from fastapi.responses import JSONResponse
 
+from db import ConfigModel, SessionDep
 from easybd.conf import JDBCConf
 from easybd.datax import DataXReaderType
 from easybd.datax.datax_type import DataXWriterType
@@ -15,6 +18,11 @@ from easybd.excel import Excel
 from models.dataxModel import DataxModel
 from models.excelModel import ExcelModel
 from models.fileModel import FileModel
+
+# 确保上传目录存在
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 
 router = APIRouter(prefix="/api", tags=["openapi"])
 @router.get("/")
@@ -74,6 +82,8 @@ def process_table(dataxModel: DataxModel):
     print(dataxModel)
     datax_conf = json.loads(dataxModel.parameter)
     print(datax_conf)
+    hikapiConf = json.loads(dataxModel.hikapiConf)
+    print(f"hikapiConf : {hikapiConf}")
 
 
     reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
@@ -110,6 +120,15 @@ def process_table(dataxModel: DataxModel):
         datax_json['job']['content'][0]['writer']['parameter']['username'] = datax_conf['writerUserName']
         datax_json['job']['content'][0]['writer']['parameter']['password'] = datax_conf['writerPassword']
         datax_json = json.dumps(datax_json)
+    if reader_type ==DataXReaderType.HIKAPI:
+        datax_json = json.loads(datax_json)
+        datax_json['job']['content'][0]['reader']['parameter']['host'] = hikapiConf[
+            'host']
+        datax_json['job']['content'][0]['reader']['parameter']['appKey'] = hikapiConf['appKey']
+        datax_json['job']['content'][0]['reader']['parameter']['appSecret'] = hikapiConf['appSecret']
+        datax_json['job']['content'][0]['reader']['parameter']['jsonData'] = hikapiConf['jsonData']
+        datax_json = json.dumps(datax_json)
+    print(datax_json)
 
     return {"datax": datax_json, "sql_ddl": ddl_json}
 
@@ -131,9 +150,34 @@ def _get_tables(df: pd.DataFrame) -> list:
     table_list = df[['表名','表备注']].drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist()
     return table_list
 
-@router.get('/tools/db/download')
-def download_template():
-    # 假设模板文件名为 template.xlsx，位于服务器的某个路径下
-    template_file_path = os.path.join(current_app.config['root_path'],"static/template/模板.xlsx")
-    # 使用 Flask 的 send_file 函数发送文件
-    return send_file(template_file_path, as_attachment=True)
+
+@router.post('/tools/excel/upload')
+async def upload_file(session: SessionDep,file: UploadFile = File(...)):
+    try:
+        # 获取文件名
+        filename = file.filename
+
+        # 构造文件保存路径
+        file_path = os.path.join(UPLOAD_DIR, filename)
+
+
+        # 保存文件到本地
+        with open(file_path, "wb") as buffer:
+            buffer.write(await file.read())
+
+        full_file_path = os.path.join(os.getcwd(), file_path)
+
+        conf = ConfigModel(id=str(uuid.uuid4()),confType="excel", confName=filename, confContent=full_file_path)
+        session.add(conf)
+        session.commit()
+        session.refresh(conf)
+        # 返回文件保存路径（可以是相对路径或完整URL）
+        return JSONResponse(
+            status_code=200,
+            content="上传成功"
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"文件上传失败: {str(e)}"
+        )

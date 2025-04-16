@@ -105,6 +105,7 @@ const checkstate = ref(false)
 const confContentDatax = ref()
 const confContentDolphin = ref()
 const confContentCommon= ref()
+const hikapiConf = ref('')
 
 const dataxRaderTypes = ref(
     [
@@ -172,22 +173,25 @@ const closeSql = () => {
 }
 
 
-const changeTable = (selectTableName, f, s, c) => {
+const changeTable = (selectTableName, f, s, c, hikapi) => {
     filePath.value = f
     sheet.value = s
     selectTable.value = selectTableName
     checkstate.value = true
     confContentDatax.value = c
+    hikapiConf.value = hikapi
     closeSql()
 }
 
 const ok = () => {
+    console.log(`xxx ${hikapiConf.value}`)
     var body = {
         "reader": readerType.value,
         "writer": writerType.value,
         "ddlType": ddlType.value,
         "parameter": confContentDatax.value,
         "confDolphin": confContentDolphin.value,
+        "hikapiConf": hikapiConf.value,
         "excelInfo": {
             "filePath": filePath.value,
             "sheet": sheet.value,

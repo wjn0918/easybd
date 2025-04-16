@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <select-conf @invoke-change-conf="changeConf"></select-conf>
-    </div>
-
+  <div>
+  <input>{{ confType }}</input>
+    <Children  v-model="confType"/>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import Children from './Children.vue'
+const confType = ref('excel')
 
-import selectConf from '@c/configCenter/selectConf/index.vue'
 
-
-const changeConf =(confContent)=>{
-    console.log(confContent)
-}
 
 </script>

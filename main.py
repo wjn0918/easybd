@@ -1,12 +1,14 @@
 from typing import Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
 
 from db import create_db_and_tables
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-from api import config, tools,db
+from api import config, tools,db,deploy_code
 
 
 
@@ -27,5 +29,6 @@ def read_item(item_id: int, q: Union[str, None] = None):
 app.include_router(config.router)
 app.include_router(tools.router)
 app.include_router(db.router)
+app.include_router(deploy_code.router)
 
 

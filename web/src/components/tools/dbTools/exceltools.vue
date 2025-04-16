@@ -5,6 +5,7 @@
                         @invoke-change-conf-dolphin="changeConfDolphin"
                         @invoke-change-conf-common="changeConfCommon"
                         @invoke-change-conf-jdbc="changeConfJdbc"
+                        @invoke-change-conf-hikapi="changeConfHikapi"
                         ></select-conf>
                 </el-row>
 </div>
@@ -63,7 +64,7 @@
 
 
             <el-col :span="12">
-                <slot name="scripts" :ifShowSql=ifShowSql :confContentJdbc=confContentJdbc></slot>
+                <slot name="scripts" :ifShowSql=ifShowSql :confContentJdbc=confContentJdbc :hikapiConf=hikapiConf></slot>
             </el-col>
 
         </el-row>
@@ -93,6 +94,7 @@ const ifShowSql = ref(false)
 const sourceTables = ref([])
 const confContentDatax = ref()
 const confContentJdbc = ref()
+const hikapiConf = ref()
 
 const formInline = reactive({
     filePath: `D:\\wjn\\work_info\\docs\\src\\tx\\表结构_特校.xlsx`
@@ -101,6 +103,12 @@ const formInline = reactive({
 const changeConfCommon = (param) => {
     console.log(`${param}` )
     formInline.filePath = param
+
+}
+
+const changeConfHikapi = (param) => {
+    console.log(`index: ${param}` )
+    hikapiConf.value = param
 
 }
 
@@ -175,7 +183,7 @@ const changeSheet = () => {
 
 const changeTable = () => {
     console.log(selectTable.value, formInline.filePath, selectSheet.value, confContentDatax.value)
-    emit('invoke-change-table', selectTable.value, formInline.filePath, selectSheet.value, confContentDatax.value);
+    emit('invoke-change-table', selectTable.value, formInline.filePath, selectSheet.value, confContentDatax.value, hikapiConf.value);
 }
 
 </script>

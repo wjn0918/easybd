@@ -16,10 +16,15 @@ class TemplateReaderHikapi:
         table_info: ETLTableInfo = args[0]
         columns = table_info.table_info.table_fields
         source_table = table_info.source_table_info[0].table_info.table_name
-        parameter: dict = json.loads(args[1])
-        host = parameter.get('host', "host")
-        app_key = parameter.get('appKey', "appKey")
-        app_secret = parameter.get('appSecret', "appSecret")
+        try:
+            parameter: dict = json.loads(args[1])
+            host = parameter.get('host', "host")
+            app_key = parameter.get('appKey', "appKey")
+            app_secret = parameter.get('appSecret', "appSecret")
+        except TypeError:
+            host = ""
+            app_key = ""
+            app_secret = ""
 
         template_reader_hikapi = {
             "name": "hikapireader",

@@ -20,7 +20,7 @@ export const apiCs = params => {
 };
 
 const getTemplate = params => {
-    return axios.get(`/api/tools/db/download`, { responseType: 'blob' });
+    return axios.get(`/static/template/模板.xlsx`, { responseType: 'blob' });
 };
 
 export {

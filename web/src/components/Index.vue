@@ -59,6 +59,12 @@
         </el-icon>
         <span>配置中心</span>
       </template>
+        <el-menu-item index="/configCenter/excel">
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>excel</span>
+      </el-menu-item>
       <el-menu-item index="/configCenter/datax">
         <el-icon>
           <setting />
@@ -82,6 +88,12 @@
           <setting />
         </el-icon>
         <span>jdbc</span>
+      </el-menu-item>
+        <el-menu-item index="/configCenter/hikapi">
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>hikapi</span>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>

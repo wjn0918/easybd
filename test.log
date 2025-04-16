@@ -148,3 +148,42 @@
 2025-04-10 16:01:48,314 - 12648 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 树人_数据中心_校门进出记录
 2025-04-10 16:10:25,782 - 42704 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 多校区管理_空间用户
 2025-04-10 16:10:40,863 - 42704 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 多校区管理_空间用户
+2025-04-11 09:48:47,239 - 36608 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 系统设置_用户
+2025-04-11 09:49:57,706 - 36608 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 系统设置_用户
+2025-04-11 10:11:21,412 - 36608 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆入场数据表
+2025-04-11 10:11:57,165 - 36608 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 系统设置_用户
+2025-04-11 10:13:02,790 - 36608 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 系统设置_用户
+2025-04-11 10:23:34,367 - 2848 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-04-11 10:28:22,896 - 17732 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表v2
+2025-04-11 10:30:39,413 - 34600 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表v2
+2025-04-11 10:31:49,911 - 11868 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表v2
+2025-04-11 10:36:37,833 - 21536 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表v2
+2025-04-11 15:20:19,030 - 46272 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表V1
+2025-04-11 15:22:14,270 - 46272 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表V1
+2025-04-11 15:33:52,126 - 8888 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询人员列表V1
+2025-04-14 09:10:23,193 - 10828 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆入场数据表
+2025-04-14 09:36:39,724 - 16688 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生书院
+2025-04-15 14:39:47,363 - 37752 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 多校区管理_空间用户
+2025-04-15 15:13:58,816 - 7396 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\fastapi\dependencies\utils.py - ERROR: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-04-15 15:15:18,212 - 43052 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\fastapi\dependencies\utils.py - ERROR: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-04-15 15:15:38,181 - 28968 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\fastapi\dependencies\utils.py - ERROR: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-04-16 17:44:57,710 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-04-16 17:45:00,566 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-04-16 17:45:01,668 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-04-16 17:45:03,324 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-04-16 17:45:03,858 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-04-16 17:45:04,772 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-04-16 17:45:59,849 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-04-16 17:46:08,268 - 27836 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤

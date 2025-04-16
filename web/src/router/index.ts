@@ -66,6 +66,16 @@ const routes = [
         path: 'jdbc',
         name: 'jdbc',
         component: () => import("@/components/configCenter/jdbc/index.vue")
+      },
+      {
+        path: 'hikapi',
+        name: 'hikapi',
+        component: () => import("@/components/configCenter/hikapi/index.vue")
+      },
+      {
+        path: 'excel',
+        name: 'excel',
+        component: () => import("@/components/configCenter/excel/index.vue")
       }
     ]
     

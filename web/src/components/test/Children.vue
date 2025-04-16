@@ -1,30 +1,23 @@
 <template>
-<p>common 配置</p>
-    <el-select v-model="selectConfigCommon" placeholder="Select" size="large" style="width: 240px" @change="changeConfCommon">
-        <el-option v-for="item in confDataCommon" :key="item.key" :label="item.label" :value="item.value" />
-    </el-select>
-    <p>datax 配置</p>
-    <el-select v-model="selectConfig" placeholder="Select" size="large" style="width: 240px" @change="changeConfDatax">
-        <el-option v-for="item in confDataDatax" :key="item.key" :label="item.label" :value="item.value" />
-    </el-select>
-    <p>dolphincheduler 配置</p>
-    <el-select v-model="selectConfigDolphin" placeholder="Select" size="large" style="width: 240px" @change="changeConfDolphin">
-        <el-option v-for="item in confDataDolphin" :key="item.key" :label="item.label" :value="item.value" />
-    </el-select>
-    <p>jdbc 配置</p>
-    <el-select v-model="selectConfigJdbc" placeholder="Select" size="large" style="width: 240px" @change="changeConfJdbc">
-        <el-option v-for="item in confDataJdbc" :key="item.key" :label="item.label" :value="item.value" />
-    </el-select>
-    <p>hikapi 配置</p>
-    <el-select v-model="selectConfigHikapi" placeholder="Select" size="large" style="width: 240px" @change="changeConfHikapi">
-        <el-option v-for="item in confDataHikapi" :key="item.key" :label="item.label" :value="item.value" />
-    </el-select>
+<div>
+  <span>{{ confType }} 配置</span>
+      <el-select v-model="selectConfigCommon" placeholder="Select" size="large" style="width: 240px" @change="changeConfCommon">
+          <el-option v-for="item in confDataCommon" :key="item.key" :label="item.label" :value="item.value" />
+      </el-select>
+</div>
+
 </template>
     
 <script setup lang="ts">
 import { ref, onMounted, defineEmits } from "vue"
 import { ConfigApi } from '@/api/api.js'
 import _ from 'lodash';
+
+const confType = defineModel()
+
+
+
+
 const selectConfig = ref()
 const selectConfigDolphin = ref()
 const selectConfigCommon = ref()
@@ -56,11 +49,12 @@ onMounted(() => {
         );
 
         confDataDatax.value = groupedAndMappedData['datax'] || []
-        console.log(confDataDatax.value)
         confDataDolphin.value = groupedAndMappedData['dolphinscheduler'] || []
-        confDataCommon.value = groupedAndMappedData['common'] || []
+        confDataCommon.value = groupedAndMappedData[confType.value] || []
         confDataJdbc.value = groupedAndMappedData['jdbc'] || []
         confDataHikapi.value = groupedAndMappedData['hikapi'] || []
+        console.log(confDataCommon.value)
+
     })
     
 });
