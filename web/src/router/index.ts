@@ -17,27 +17,27 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/company',
-    component: () => import('@/components/shingi/index.vue'),
-    children: [
-      {
-        path: 'source',
-        name: 'CompanySource',
-        component: () => import("@/components/shingi/source.vue")
-      },
-      {
-        path: 'hik',
-        name: 'CompanySource',
-        component: () => import("@/components/shingi/hik/index.vue")
-      },
-      {
-        path: 'jz',
-        name: 'CompanySource',
-        component: () => import("@/components/shingi/jz/index.vue")
-      },
-    ]
-  },
+  // {
+  //   path: '/company',
+  //   component: () => import('@/components/shingi/index.vue'),
+  //   children: [
+  //     {
+  //       path: 'source',
+  //       name: 'CompanySource',
+  //       component: () => import("@/components/shingi/source.vue")
+  //     },
+  //     {
+  //       path: 'hik',
+  //       name: 'CompanySource',
+  //       component: () => import("@/components/shingi/hik/index.vue")
+  //     },
+  //     {
+  //       path: 'jz',
+  //       name: 'CompanySource',
+  //       component: () => import("@/components/shingi/jz/index.vue")
+  //     },
+  //   ]
+  // },
   {
     path: '/dbCenter',
     component: () => import('@/components/dbCenter/index.vue'),
@@ -89,7 +89,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/easybd/'),
   routes
 })
 

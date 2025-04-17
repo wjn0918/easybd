@@ -8,7 +8,8 @@ from models.excelModel import ExcelModel
 class DataxModel(BaseModel):
     reader: str
     writer: str
+    writer_conf: str
     ddlType: str
-    hikapiConf: str
+    hikapiConf: Optional[str] = None
     parameter: Optional[str] = None
     excelInfo: Optional[ExcelModel] = None

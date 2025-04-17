@@ -20,7 +20,7 @@
         <span>execl转datax</span>
       </el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="/company">
+    <!-- <el-sub-menu index="/company">
       <template #title>
         <el-icon>
           <location />
@@ -39,7 +39,7 @@
         </el-icon>
         <span>交职工具</span>
       </el-menu-item>
-    </el-sub-menu>
+    </el-sub-menu> -->
     <el-menu-item index="/company/source">
       <el-icon>
         <setting />

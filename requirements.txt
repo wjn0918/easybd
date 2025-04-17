@@ -1,1 +1,3 @@
 python-multipart
+xlsxwriter
+openpyxl

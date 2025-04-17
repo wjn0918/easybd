@@ -80,10 +80,12 @@ def process_table(dataxModel: DataxModel):
     """
     excelInfo = dataxModel.excelInfo
     print(dataxModel)
-    datax_conf = json.loads(dataxModel.parameter)
-    print(datax_conf)
-    hikapiConf = json.loads(dataxModel.hikapiConf)
-    print(f"hikapiConf : {hikapiConf}")
+    try:
+        datax_conf = json.loads(dataxModel.parameter)
+        print(datax_conf)
+    except Exception as e:
+        print("datax 未配置")
+
 
 
     reader_type: DataXReaderType = DataXReaderType.__members__.get(dataxModel.reader)
@@ -120,8 +122,15 @@ def process_table(dataxModel: DataxModel):
         datax_json['job']['content'][0]['writer']['parameter']['username'] = datax_conf['writerUserName']
         datax_json['job']['content'][0]['writer']['parameter']['password'] = datax_conf['writerPassword']
         datax_json = json.dumps(datax_json)
-    if reader_type ==DataXReaderType.HIKAPI:
+    if writer_type == DataXWriterType.PGSQL:
         datax_json = json.loads(datax_json)
+        writer_conf = json.loads(dataxModel.writer_conf)
+        datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = writer_conf['jdbcUrl']
+        datax_json['job']['content'][0]['writer']['parameter']['username'] = writer_conf['userName']
+        datax_json['job']['content'][0]['writer']['parameter']['password'] = writer_conf['passwd']
+    if reader_type ==DataXReaderType.HIKAPI:
+        hikapiConf = json.loads(dataxModel.hikapiConf)
+        print(f"hikapiConf : {hikapiConf}")
         datax_json['job']['content'][0]['reader']['parameter']['host'] = hikapiConf[
             'host']
         datax_json['job']['content'][0]['reader']['parameter']['appKey'] = hikapiConf['appKey']
