@@ -23,7 +23,9 @@ class TemplateWriterPostgresql:
                 "username": jdbc_conf.user,
                 "password": jdbc_conf.passwd,
                 "column": columns,
-                "preSql": [],
+                "preSql": [
+                    f"truncate table {table_name}"
+                ],
                 "connection": [
                     {
                         "jdbcUrl": jdbc_conf.jdbc_url,
@@ -32,7 +34,8 @@ class TemplateWriterPostgresql:
                         ]
                     }
                 ],
-                "postSql": []
+                "postSql": [
+                ]
             }
         }
         return template_writer_hive

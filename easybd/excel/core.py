@@ -54,6 +54,17 @@ class Excel:
             a = f"\"{f} -- {ti.table_fields_comment[i]}\""
             r.append(a)
         return "\n"+ ",\n".join(r)
+    def to_filed_comment(self):
+        """
+        转为  字段  字段备注
+        :return:
+        """
+        r = []
+        ti = self.table_meta[0].table_info
+        for i,f in enumerate(ti.table_fields):
+            a = f"{f} as \"{ti.table_fields_comment[i]}\""
+            r.append(a)
+        return "\n"+ ",\n".join(r)
 
     def to_dml2(self, include_null=False):
         return self.to_dml(self.table_meta[0], include_null)

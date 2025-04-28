@@ -66,6 +66,21 @@
                 </div>
               </el-col>
             </el-row>
+            <el-row :gutter="30">
+              <el-col :span="12">
+                <div>
+                  <button @click="() => handleCopy(fc)">
+                    复制
+                  </button>
+                  <highlightjs
+                    class="sql"
+                    language="SQL"
+                    :code="fc"
+                  ></highlightjs>
+                </div>
+              </el-col>
+            </el-row>
+            
           </div>
         </template>
       </excel-info>
@@ -97,6 +112,7 @@ const sourceTables = ref([]);
 const ddlSql = ref("");
 const dmlSql = ref("");
 const fieldComment = ref("");
+const fc = ref("");
 const fullscreenLoading = ref(false);
 const input_dir = ref("D:\\wjn\\gitee\\jzDataMigrate\\etl\\jz");
 
@@ -157,6 +173,7 @@ const changeTable = (selectTableName, f, s) => {
     dmlSql.value = res.data.sqlQuery;
     sourceTables.value = res.data.sourceTables;
     fieldComment.value = res.data.fieldComment;
+    fc.value = res.data.fc;
     ifShowSql.value = true;
   });
 };

@@ -60,7 +60,8 @@ def db_process_table(excelInfo: ExcelModel):
     sql_dml = t.to_dml2()
     sql_ddl = t.to_ddl2(DDLType.PgSql)
     j = t.to_field_list()
-    return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables", "fieldComment": j}
+    fc = t.to_filed_comment()
+    return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables", "fieldComment": j, "fc": fc}
 
 
 @router.post("/tools/excel/datax/process_table")
@@ -129,13 +130,16 @@ def process_table(dataxModel: DataxModel):
         datax_json['job']['content'][0]['writer']['parameter']['username'] = writer_conf['userName']
         datax_json['job']['content'][0]['writer']['parameter']['password'] = writer_conf['passwd']
     if reader_type ==DataXReaderType.HIKAPI:
+        if isinstance(datax_json, str):
+            datax_json = json.loads(datax_json)
         hikapiConf = json.loads(dataxModel.hikapiConf)
         print(f"hikapiConf : {hikapiConf}")
-        datax_json['job']['content'][0]['reader']['parameter']['host'] = hikapiConf[
-            'host']
+        datax_json['job']['content'][0]['reader']['parameter']['host'] = hikapiConf['host']
         datax_json['job']['content'][0]['reader']['parameter']['appKey'] = hikapiConf['appKey']
         datax_json['job']['content'][0]['reader']['parameter']['appSecret'] = hikapiConf['appSecret']
         datax_json['job']['content'][0]['reader']['parameter']['jsonData'] = hikapiConf['jsonData']
+        if writer_type == DataXWriterType.STREAM:
+            datax_json['job']['content'][0]['reader']['parameter']['page']["ifPage"] = False
         datax_json = json.dumps(datax_json)
     print(datax_json)
 
