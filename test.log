@@ -227,3 +227,4 @@ pip install python-multipart
 2025-04-24 11:29:37,842 - 43196 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 宿舍_入住学生信息
 2025-04-24 11:36:25,200 - 43196 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 字典
 2025-04-24 11:36:36,560 - 51648 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆基础信息
+2025-05-13 10:27:02,086 - 13376 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表V1

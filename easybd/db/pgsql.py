@@ -5,6 +5,8 @@ from urllib.parse import quote_plus as urlquote
 class PostgreSql(BaseDB):
     def __init__(self, host, port, username, password, dbname, schema, table_names: list = None):
         """
+        @:param table_names: 需要导出的表  不传导出所有
+
         # default
         engine = create_engine("postgresql://scott:tiger@localhost/mydatabase")
 
