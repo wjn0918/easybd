@@ -228,3 +228,4 @@ pip install python-multipart
 2025-04-24 11:36:25,200 - 43196 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 字典
 2025-04-24 11:36:36,560 - 51648 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆基础信息
 2025-05-13 10:27:02,086 - 13376 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init ods_海康_查询组织列表V1
+2025-05-30 08:50:52,478 - 25720 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 大屏_人员状态

@@ -40,7 +40,7 @@
         <span>交职工具</span>
       </el-menu-item>
     </el-sub-menu> -->
-    <el-menu-item index="/company/source">
+    <!-- <el-menu-item index="/company/source">
       <el-icon>
         <setting />
       </el-icon>
@@ -51,7 +51,7 @@
         <Coin />
       </el-icon>
       <span>数据源中心</span>
-    </el-menu-item>
+    </el-menu-item> -->
     <el-sub-menu index="">
       <template #title>
         <el-icon>

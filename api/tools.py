@@ -18,10 +18,15 @@ from easybd.excel import Excel
 from models.dataxModel import DataxModel
 from models.excelModel import ExcelModel
 from models.fileModel import FileModel
+from pathlib import Path
 
 # 确保上传目录存在
 UPLOAD_DIR = "uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# os.makedirs(UPLOAD_DIR, exist_ok=True)
+directory = Path(UPLOAD_DIR)
+
+# 检查目录是否存在，不存在则创建
+directory.mkdir(parents=True, exist_ok=True)
 
 
 router = APIRouter(prefix="/api", tags=["openapi"])

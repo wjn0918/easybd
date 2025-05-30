@@ -20,7 +20,8 @@ export const apiCs = params => {
 };
 
 const getTemplate = params => {
-    return axios.get(`/static/template/模板.xlsx`, { responseType: 'blob' });
+    const encodedUrl = encodeURI('/static/template/template.xlsx');
+    return axios.get(encodedUrl, { responseType: 'blob' });
 };
 
 export {

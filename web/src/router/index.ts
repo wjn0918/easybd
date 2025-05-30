@@ -38,11 +38,11 @@ const routes = [
   //     },
   //   ]
   // },
-  {
-    path: '/dbCenter',
-    component: () => import('@/components/dbCenter/index.vue'),
+  // {
+  //   path: '/dbCenter',
+  //   component: () => import('@/components/dbCenter/index.vue'),
     
-  },
+  // },
   {
     path: '/configCenter',
     component: () => import('@/components/configCenter/index.vue'),
@@ -89,7 +89,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/easybd/'),
+  history: createWebHistory('/'),
   routes
 })
 
