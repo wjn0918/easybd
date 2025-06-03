@@ -72,6 +72,13 @@ def db_process_table(excelInfo: ExcelModel):
 @router.post('/tools/db/tojson')
 def db_process_sheet2json(excelInfo: ExcelModel):
     df = pd.read_excel(excelInfo.filePath,sheet_name=excelInfo.sheet)
+    # 安全地执行过滤表达式（示例）
+    if excelInfo.filterExpr:
+        try:
+            # 设置 df 到局部变量中，供 eval 使用
+            df = eval(excelInfo.filterExpr, {"__builtins__": {}}, {"df": df})
+        except Exception as e:
+            return {"error": f"过滤表达式错误: {str(e)}"}
     r = df.to_json(orient='records',force_ascii=False)
     return r
 

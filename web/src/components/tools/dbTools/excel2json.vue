@@ -1,6 +1,18 @@
 <template>
   <div>
-    <select-conf-common v-model="confType" v-model:select-conf="selectConf" />
+    <div
+      style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px"
+    >
+      <select-conf-common v-model="confType" v-model:select-conf="selectConf" />
+      <el-button type="primary" @click="resetFilter">重置</el-button>
+    </div>
+    <!-- 这里是新增的过滤输入 -->
+    <div style="margin-bottom: 10px">
+      <el-input
+        v-model="pandasFilter"
+        placeholder="请输入 Pandas 过滤表达式，如 df[df['col'] > 5]"
+      />
+    </div>
     <excel-info
       v-model="selectConf"
       v-model:ifExtractTable="ifExtractTable"
@@ -32,6 +44,7 @@ const selectConf = ref("");
 const ifExtractTable = ref(false);
 const ifShow = ref(false);
 const dataJson = ref("");
+const pandasFilter = ref("");
 
 const { toClipboard } = useClipboard();
 const handleCopy = (copyObj) => {
@@ -45,12 +58,20 @@ const handleCopy = (copyObj) => {
   }
 };
 
+const resetFilter = () => {
+  selectConf.value = "";
+  pandasFilter.value = "";
+  dataJson.value = "";
+  ifShow.value = false;
+};
+
 const changeSheet = (f, s) => {
   console.log(f, s);
   ifShow.value = false;
   DBToolsApi.process2json({
     filePath: f,
     sheet: s,
+    filterExpr: pandasFilter.value,
   }).then((res) => {
     console.log(res);
     dataJson.value = res.data;
