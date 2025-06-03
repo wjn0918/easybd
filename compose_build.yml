@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      image: registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-backend
+    image: registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-backend
     container_name: easybd-api
     ports:
       - "5001:5001"
@@ -14,7 +14,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-      image: registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-frontend
+    image: registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-frontend
     container_name: easybd-frontend
     ports:
       - "3000:80"
