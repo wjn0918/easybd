@@ -15,6 +15,11 @@ const routes = [
         name: 'excel2datax',
         component: () => import("@/components/tools/dbTools/excel2datax.vue")
       },
+      {
+        path: 'excel2json',
+        name: 'excel2json',
+        component: () => import("@/components/tools/dbTools/excel2json.vue")
+      },
     ]
   },
   // {

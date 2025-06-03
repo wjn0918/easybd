@@ -120,7 +120,7 @@ class Excel:
 SELECT 
     {qfs_str}
 FROM
-    jz2.{stn}    
+    {stn}    
     {w_str}
 )      
             """
@@ -128,10 +128,7 @@ FROM
         join_clauses = "\r\n".join(join_sqls)
         dml_sql = ",\n\t".join(source_sqls)
         final_sql = f"""
-WITH
-{dml_sql}
-
--- insert overwrite jz2.{target_table_name} partition(dt='${{bizdate}}')
+WITH {dml_sql}
 SELECT 
     {f_str}
 FROM 

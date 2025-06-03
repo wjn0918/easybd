@@ -95,6 +95,8 @@ const hikapiConf = ref();
 
 const filePath = defineModel()
 
+const ifExtractTable = defineModel('ifExtractTable',{ default: true }) // 是否解析到表
+
 const changeConfCommon = (param) => {
   console.log(`${param}`);
   filePath.value = param;
@@ -131,7 +133,7 @@ const onSubmit = () => {
 };
 
 const upload = ref<UploadInstance>();
-const emit = defineEmits(["invoke-change-table"]);
+const emit = defineEmits(["invoke-change-table","invoke-change-sheet"]);
 const uploadFile = (files) => {
   upload.value!.clearFiles();
   const file = files[0] as UploadRawFile;
@@ -160,16 +162,26 @@ const closeTable = () => {
 };
 
 const changeSheet = () => {
+  if(ifExtractTable.value){
   closeTable();
   ExcelApi.getTablesInSheet({
-    filePath: filePath.value,
-    sheet: selectSheet.value,
-  }).then((res) => {
-    if (res.data.tables.length > 0) {
-      ifShowTables.value = true;
-      sheetTables.value = res.data.tables;
-    }
-  });
+      filePath: filePath.value,
+      sheet: selectSheet.value,
+    }).then((res) => {
+      if (res.data.tables.length > 0) {
+        ifShowTables.value = true;
+        sheetTables.value = res.data.tables;
+      }
+    });
+  }else{
+    console.log("不解析到表");
+    emit(
+    "invoke-change-sheet",
+    filePath.value,
+    selectSheet.value
+  );
+  }
+  
 };
 
 const changeTable = () => {

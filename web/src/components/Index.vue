@@ -1,111 +1,90 @@
 <template>
-  <el-menu default-active="1" class="el-menu-vertical-demo" :router=true>
-    <el-sub-menu index="/tools/database-tool">
+  <el-menu
+    default-active="1"
+    class="el-menu-vertical-demo"
+    :router="true"
+    background-color="#f8f9fa"
+    text-color="#333"
+    active-text-color="#409EFF"
+  >
+    <!-- 工具类菜单 -->
+    <el-sub-menu index="/tools">
       <template #title>
-        <el-icon>
-          <location />
-        </el-icon>
-        <span>数据库工具</span>
+        <el-icon><Tools /></el-icon>
+        <span>开发工具</span>
       </template>
+
       <el-menu-item index="/tools/database-tool">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>execl转sql</span>
+        <el-icon><Files /></el-icon>
+        <span>Excel 转 SQL</span>
       </el-menu-item>
       <el-menu-item index="/tools/excel2datax">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>execl转datax</span>
+        <el-icon><Upload /></el-icon>
+        <span>Excel 转 DataX</span>
+      </el-menu-item>
+      <el-menu-item index="/tools/excel2json">
+        <el-icon><Document /></el-icon>
+        <span>Excel 转 JSON</span>
       </el-menu-item>
     </el-sub-menu>
-    <!-- <el-sub-menu index="/company">
+
+    <!-- 分割线 -->
+    <div style="height: 1px; background-color: #ddd; margin: 12px 0;"></div>
+
+    <!-- 配置中心 -->
+    <el-sub-menu index="/configCenter">
       <template #title>
-        <el-icon>
-          <location />
-        </el-icon>
-        <span>新怡</span>
-      </template>
-      <el-menu-item index="/company/hik">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>海康api</span>
-      </el-menu-item>
-      <el-menu-item index="/company/jz">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>交职工具</span>
-      </el-menu-item>
-    </el-sub-menu> -->
-    <!-- <el-menu-item index="/company/source">
-      <el-icon>
-        <setting />
-      </el-icon>
-      <span>其他工具</span>
-    </el-menu-item>
-    <el-menu-item index="/dbCenter">
-      <el-icon>
-        <Coin />
-      </el-icon>
-      <span>数据源中心</span>
-    </el-menu-item> -->
-    <el-sub-menu index="">
-      <template #title>
-        <el-icon>
-          <location />
-        </el-icon>
+        <el-icon><Setting /></el-icon>
         <span>配置中心</span>
       </template>
-        <el-menu-item index="/configCenter/excel">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>excel</span>
+
+      <el-menu-item index="/configCenter/excel">
+        <el-icon><Document /></el-icon>
+        <span>Excel 配置</span>
       </el-menu-item>
       <el-menu-item index="/configCenter/datax">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>datax</span>
+        <el-icon><DataLine /></el-icon>
+        <span>DataX 配置</span>
       </el-menu-item>
       <el-menu-item index="/configCenter/dolphinscheduler">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>dolphinscheduler</span>
+        <el-icon><Clock /></el-icon>
+        <span>DolphinScheduler</span>
       </el-menu-item>
       <el-menu-item index="/configCenter/common">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>common</span>
+        <el-icon><Grid /></el-icon>
+        <span>公共配置</span>
       </el-menu-item>
-       <el-menu-item index="/configCenter/jdbc">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>jdbc</span>
+      <el-menu-item index="/configCenter/jdbc">
+        <el-icon><Connection /></el-icon>
+        <span>JDBC 连接</span>
       </el-menu-item>
-        <el-menu-item index="/configCenter/hikapi">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>hikapi</span>
+      <el-menu-item index="/configCenter/hikapi">
+        <el-icon><Api /></el-icon>
+        <span>HIK API</span>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
+
 <script lang="ts" setup>
 import {
   Document,
-  Menu as IconMenu,
-  Location,
   Setting,
+  Tools,
+  Clock,
+  Grid,
+  Upload,
+  Files,
+  DataLine,
+  Connection,
 } from '@element-plus/icons-vue'
-
-
-
 </script>
+
+<style scoped>
+.el-menu-vertical-demo {
+  width: 220px;
+  min-height: 100vh;
+  border-right: 1px solid #ddd;
+  font-size: 14px;
+}
+</style>

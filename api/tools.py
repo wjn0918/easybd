@@ -6,7 +6,7 @@ import uuid
 
 import numpy as np
 import pandas as pd
-from fastapi import APIRouter,File,UploadFile,HTTPException
+from fastapi import APIRouter,File,UploadFile,HTTPException, Query
 from fastapi.responses import JSONResponse
 
 from db import ConfigModel, SessionDep
@@ -68,6 +68,12 @@ def db_process_table(excelInfo: ExcelModel):
     fc = t.to_filed_comment()
     return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables", "fieldComment": j, "fc": fc}
 
+
+@router.post('/tools/db/tojson')
+def db_process_sheet2json(excelInfo: ExcelModel):
+    df = pd.read_excel(excelInfo.filePath,sheet_name=excelInfo.sheet)
+    r = df.to_json(orient='records',force_ascii=False)
+    return r
 
 @router.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):
@@ -170,32 +176,37 @@ def _get_tables(df: pd.DataFrame) -> list:
 
 
 @router.post('/tools/excel/upload')
-async def upload_file(session: SessionDep,file: UploadFile = File(...)):
+async def upload_file(session: SessionDep, file: UploadFile = File(...)):
     try:
-        # 获取文件名
         filename = file.filename
-
-        # 构造文件保存路径
         file_path = os.path.join(UPLOAD_DIR, filename)
 
-
-        # 保存文件到本地
+        # 保存文件
         with open(file_path, "wb") as buffer:
             buffer.write(await file.read())
 
         full_file_path = os.path.join(os.getcwd(), file_path)
 
-        conf = ConfigModel(id=str(uuid.uuid4()),confType="excel", confName=filename, confContent=full_file_path)
-        session.add(conf)
-        session.commit()
-        session.refresh(conf)
-        # 返回文件保存路径（可以是相对路径或完整URL）
-        return JSONResponse(
-            status_code=200,
-            content="上传成功"
-        )
+        # 先查询数据库是否有该文件名记录
+        conf = session.query(ConfigModel).filter_by(confName=filename).first()
+        if conf:
+            # 更新已有记录
+            conf.confContent = full_file_path
+            session.commit()
+            session.refresh(conf)
+        else:
+            # 新增记录
+            conf = ConfigModel(id=str(uuid.uuid4()), confType="excel", confName=filename, confContent=full_file_path)
+            session.add(conf)
+            session.commit()
+            session.refresh(conf)
+
+        return JSONResponse(status_code=200, content="上传成功")
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"文件上传失败: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"文件上传失败: {str(e)}")
+
+@router.get("/tools/excel/check-file-exist")
+async def check_file_exist(filename: str = Query(...)):
+    file_path = os.path.join(UPLOAD_DIR, filename)
+    exists = os.path.isfile(file_path)
+    return JSONResponse(content={"exists": exists})

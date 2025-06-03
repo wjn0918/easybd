@@ -31,6 +31,19 @@ class DBTools extends Base {
         )
     }
 
+    process2json(params){
+        return axios.request(
+            {
+                url: `${this.url}/tojson`,
+                method: 'post',
+                data: params,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+    }
+
     buildScript(params){
         return axios.request(
             {
