@@ -29,12 +29,10 @@ jobs:
 
       - name: Tag and Push Frontend Image
         run: |
-          docker tag $(docker images -q | sed -n 1p) registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-frontend
           docker push registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-frontend
 
       - name: Tag and Push Backend Image
         run: |
-          docker tag $(docker images -q | sed -n 2p) registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-backend
           docker push registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-backend
 
   remote-deploy:
