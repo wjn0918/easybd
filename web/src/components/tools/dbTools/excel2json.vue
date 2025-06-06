@@ -44,7 +44,7 @@ const ifShow = ref(false);
 const dataJson = ref("");
 const pandasFilter = ref("");
 
-const transformSteps = ref([{ action: "filter", expr: "" }]);
+const transformSteps = ref([]);
 
 const { toClipboard } = useClipboard();
 const handleCopy = (copyObj) => {
