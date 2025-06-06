@@ -72,7 +72,7 @@ def db_process_table(excelInfo: ExcelModel):
 @router.post('/tools/db/tojson')
 def db_process_sheet2json(excelInfo: ExcelModel):
     try:
-        df = pd.read_excel(excelInfo.filePath, sheet_name=excelInfo.sheet,dtype=str)
+        df = pd.read_excel(excelInfo.filePath, sheet_name=excelInfo.sheet)
     except Exception as e:
         return {"error": f"读取 Excel 失败: {str(e)}"}
 
