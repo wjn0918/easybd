@@ -8,10 +8,7 @@
     </div>
     <!-- 这里是新增的过滤输入 -->
     <div style="margin-bottom: 10px">
-      <el-input
-        v-model="pandasFilter"
-        placeholder="请输入 Pandas 过滤表达式，如 df[df['col'] > 5]"
-      />
+      <transform-step-editor v-model="transformSteps" />
     </div>
     <excel-info
       v-model="selectConf"
@@ -34,6 +31,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import SelectConfCommon from "@c/configCenter/selectConf/selectConfCommon.vue";
+import TransformStepEditor from "@c/transform/TransformStepEditor.vue";
 import ExcelInfo from "@c/excel/excelInfo.vue";
 import useClipboard from "vue-clipboard3";
 import { DBToolsApi } from "@/api/api.js";
@@ -45,6 +43,8 @@ const ifExtractTable = ref(false);
 const ifShow = ref(false);
 const dataJson = ref("");
 const pandasFilter = ref("");
+
+const transformSteps = ref([{ action: "filter", expr: "" }]);
 
 const { toClipboard } = useClipboard();
 const handleCopy = (copyObj) => {
@@ -63,6 +63,7 @@ const resetFilter = () => {
   pandasFilter.value = "";
   dataJson.value = "";
   ifShow.value = false;
+  transformSteps.value = [];
 };
 
 const changeSheet = (f, s) => {
@@ -72,6 +73,7 @@ const changeSheet = (f, s) => {
     filePath: f,
     sheet: s,
     filterExpr: pandasFilter.value,
+    transformSteps: transformSteps.value,
   }).then((res) => {
     console.log(res);
     dataJson.value = res.data;

@@ -71,16 +71,27 @@ def db_process_table(excelInfo: ExcelModel):
 
 @router.post('/tools/db/tojson')
 def db_process_sheet2json(excelInfo: ExcelModel):
-    df = pd.read_excel(excelInfo.filePath,sheet_name=excelInfo.sheet)
-    # 安全地执行过滤表达式（示例）
-    if excelInfo.filterExpr:
-        try:
-            # 设置 df 到局部变量中，供 eval 使用
-            df = eval(excelInfo.filterExpr, {"__builtins__": {}}, {"df": df})
-        except Exception as e:
-            return {"error": f"过滤表达式错误: {str(e)}"}
-    r = df.to_json(orient='records',force_ascii=False)
-    return r
+    try:
+        df = pd.read_excel(excelInfo.filePath, sheet_name=excelInfo.sheet)
+    except Exception as e:
+        return {"error": f"读取 Excel 失败: {str(e)}"}
+
+    try:
+        for step in excelInfo.transformSteps:
+            if step.action == "filter":
+                df = df[eval(step.expr, {"__builtins__": {}}, {"df": df})]
+            elif step.action == "assign":
+                exec(step.expr, {"__builtins__": {}}, {"df": df})
+            elif step.action == "rename":
+                df = df.rename(columns=step.expr)
+            elif step.action == "dropna":
+                df = df.dropna(subset=step.expr)
+            else:
+                return {"error": f"不支持的操作类型: {step.action}"}
+    except Exception as e:
+        return {"error": f"处理数据失败: {str(e)}"}
+
+    return df.to_json(orient='records', force_ascii=False)
 
 @router.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):

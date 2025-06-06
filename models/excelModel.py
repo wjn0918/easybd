@@ -1,10 +1,14 @@
-from typing import Optional
+from typing import Optional, Union, Dict, List
 
 from pydantic import BaseModel
 
+
+class TransformStep(BaseModel):
+    action: str  # filter, assign, rename, dropna 等
+    expr: Union[str, Dict, List[str]]
 
 class ExcelModel(BaseModel):
     filePath: str
     sheet: str
     table: Optional[str] = ""
-    filterExpr: Optional[str] = None  # 新增字段
+    transformSteps: List[TransformStep] = []
