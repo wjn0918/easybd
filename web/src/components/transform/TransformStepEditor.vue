@@ -61,17 +61,6 @@ const steps = ref(
   props.modelValue.map((item, i) => ({ ...item, id: i + "_" + Date.now() }))
 );
 
-// 双向绑定
-watch(
-  () => props.modelValue,
-  (newVal) => {
-    steps.value = newVal.map((item, i) => ({
-      ...item,
-      id: i + "_" + Date.now(),
-    }));
-  },
-  { deep: true }
-);
 
 watch(
   steps,
