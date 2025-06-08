@@ -1,3 +1,4 @@
+import io
 import logging
 import os
 import sys
@@ -16,9 +17,10 @@ from easybd.datax.datax_type import DataXWriterType
 from easybd.db.ddl import DDLType
 from easybd.excel import Excel
 from models.dataxModel import DataxModel
-from models.excelModel import ExcelModel
+from models.excelModel import ExcelModel, JsonModel
 from models.fileModel import FileModel
 from pathlib import Path
+from fastapi.responses import StreamingResponse
 
 # 确保上传目录存在
 UPLOAD_DIR = "uploads"
@@ -67,6 +69,34 @@ def db_process_table(excelInfo: ExcelModel):
     j = t.to_field_list()
     fc = t.to_filed_comment()
     return {"sql": sql_ddl, "sqlQuery": sql_dml, "sourceTables": "source_tables", "fieldComment": j, "fc": fc}
+
+@router.post('/tools/db/toexcel')
+def db_process_json2excel(jsonModel: JsonModel):
+    try:
+
+        data = json.loads(jsonModel.jsonData)
+    except Exception as e:
+        return {"error": f"json 加载失败: {str(e)}"}
+    try:
+        # 自动从 JSON 生成 DataFrame（字段自动识别）
+        df = pd.DataFrame(data)
+
+        # 写入 Excel 到内存
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+            df.to_excel(writer, index=False)  # 不指定列，输出所有字段
+
+        output.seek(0)
+
+        # 构造下载响应
+        headers = {
+            "Content-Disposition": 'attachment; filename="export.xlsx"'
+        }
+        return StreamingResponse(output,
+                                 media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                 headers=headers)
+    except Exception as e:
+        return {"error": f"生成 Excel 失败: {str(e)}"}
 
 
 @router.post('/tools/db/tojson')
