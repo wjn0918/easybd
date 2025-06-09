@@ -123,6 +123,32 @@ def db_process_sheet2json(excelInfo: ExcelModel):
 
     return df.to_json(orient='records', force_ascii=False)
 
+@router.post('/tools/db/tomarkdown')
+def db_process_sheet2tomarkdown(excelInfo: ExcelModel):
+    try:
+        df = pd.read_excel(excelInfo.filePath, sheet_name=excelInfo.sheet)
+    except Exception as e:
+        return {"error": f"读取 Excel 失败: {str(e)}"}
+
+    try:
+        for step in excelInfo.transformSteps:
+            if step.action == "filter":
+                df = df[eval(step.expr, {"__builtins__": {}}, {"df": df})]
+            elif step.action == "assign":
+                exec(step.expr, {"__builtins__": {}}, {"df": df})
+            elif step.action == "rename":
+                df = df.rename(columns=step.expr)
+            elif step.action == "dropna":
+                df = df.dropna(subset=step.expr)
+            else:
+                return {"error": f"不支持的操作类型: {step.action}"}
+    except Exception as e:
+        return {"error": f"处理数据失败: {str(e)}"}
+
+    r = df.to_markdown(index=False)
+    print(r)
+    return df.to_markdown(index=False)
+
 @router.post("/tools/excel/datax/process_table")
 def process_table(dataxModel: DataxModel):
     """

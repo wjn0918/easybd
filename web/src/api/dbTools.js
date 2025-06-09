@@ -43,6 +43,18 @@ class DBTools extends Base {
             }
         )
     }
+    process2markdown(params) {
+        return axios.request(
+            {
+                url: `${this.url}/tomarkdown`,
+                method: 'post',
+                data: params,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+    }
 
     json2excel(params) {
         return axios.request(
