@@ -13,6 +13,10 @@
         <el-icon><Tools /></el-icon>
         <span>开发工具</span>
       </template>
+      <!-- <el-menu-item index="/tools/excel">
+        <el-icon><Files /></el-icon>
+        <span>Excel</span>
+      </el-menu-item> -->
 
       <el-menu-item index="/tools/database-tool">
         <el-icon><Files /></el-icon>
@@ -29,7 +33,7 @@
     </el-sub-menu>
 
     <!-- 分割线 -->
-    <div style="height: 1px; background-color: #ddd; margin: 12px 0;"></div>
+    <div style="height: 1px; background-color: #ddd; margin: 12px 0"></div>
 
     <!-- 配置中心 -->
     <el-sub-menu index="/configCenter">
@@ -77,7 +81,7 @@ import {
   Files,
   DataLine,
   Connection,
-} from '@element-plus/icons-vue'
+} from "@element-plus/icons-vue";
 </script>
 
 <style scoped>

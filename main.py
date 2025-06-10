@@ -8,7 +8,7 @@ from db import create_db_and_tables
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-from api import config, tools,db,deploy_code
+from api import config, tools,db,deploy_code,excel_api
 
 
 
@@ -30,5 +30,6 @@ app.include_router(config.router)
 app.include_router(tools.router)
 app.include_router(db.router)
 app.include_router(deploy_code.router)
+app.include_router(excel_api.router)
 
 

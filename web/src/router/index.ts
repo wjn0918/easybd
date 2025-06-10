@@ -6,6 +6,11 @@ const routes = [
     component: () => import('@/components/tools/index.vue'),
     children: [
       {
+        path: 'excel',
+        name: 'excel',
+        component: () => import("@/components/tools/excel/index.vue")
+      },
+      {
         path: 'database-tool',
         name: 'DatabaseTool',
         component: () => import("@/components/tools/dbTools/excel2sql.vue")

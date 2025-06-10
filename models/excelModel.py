@@ -2,6 +2,8 @@ from typing import Optional, Union, Dict, List
 
 from pydantic import BaseModel
 
+from models.fileModel import FileModel
+
 
 class JsonModel(BaseModel):
     jsonData: str
@@ -15,3 +17,11 @@ class ExcelModel(BaseModel):
     sheet: str
     table: Optional[str] = ""
     transformSteps: List[TransformStep] = []
+
+class ExcelModel2(FileModel):
+    sheet_name: str
+
+
+class ExcelConcatModel(ExcelModel2):
+    select_cols: List[str]
+    concat_template: str
