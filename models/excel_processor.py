@@ -1,7 +1,7 @@
 import pandas as pd
-import json
-import re
 from typing import List, Dict, Any, Tuple
+
+from models.excelModel import ExcelModel, ExcelInfo
 
 
 class ExcelProcessor:
@@ -15,7 +15,39 @@ class ExcelProcessor:
         self.file_path = file_path
         self.excel_file = pd.ExcelFile(file_path)
 
-    def concat_columns(self, sheet_name: str, selected_columns: List[str],
+    def get_cols(self, sheet_name: str):
+        df = pd.read_excel(self.file_path, sheet_name=sheet_name)
+        print(df.columns)
+        return df.columns.tolist()
+
+
+
+    def excel_info(self):
+        xls = pd.ExcelFile(self.file_path)
+        sheet_names = xls.sheet_names
+        return sheet_names
+
+
+    def to_json(self, excel_info: ExcelInfo):
+        df = self.df.copy()
+        try:
+            for step in excel_info.transformSteps:
+                if step.action == "filter":
+                    df = df[eval(step.expr, {"__builtins__": {}}, {"df": df})]
+                elif step.action == "assign":
+                    exec(step.expr, {"__builtins__": {}}, {"df": df})
+                elif step.action == "rename":
+                    df = df.rename(columns=step.expr)
+                elif step.action == "dropna":
+                    df = df.dropna(subset=step.expr)
+                else:
+                    return {"error": f"不支持的操作类型: {step.action}"}
+        except Exception as e:
+            return {"error": f"处理数据失败: {str(e)}"}
+
+        return df.to_json(orient='records', force_ascii=False)
+
+    def concat_columns(self, sheet_name:str, selected_columns: List[str],
                        concat_template: str) -> str:
         """
         根据模板拼接指定列
@@ -29,8 +61,8 @@ class ExcelProcessor:
         """
         try:
             # 读取数据
+            print(self.file_path, sheet_name)
             df = pd.read_excel(self.file_path, sheet_name=sheet_name)
-
             # 初始化结果列为空字符串
             df['r'] = ''
 

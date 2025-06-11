@@ -21,6 +21,15 @@ class ExcelModel(BaseModel):
 class ExcelModel2(FileModel):
     sheet_name: str
 
+class ColMetadata(BaseModel):
+    col: str
+    prefix: str
+    suffix: str
+
+class ExcelInfo(FileModel):
+    sheetName: Optional[str] = ""
+    transformSteps: List[TransformStep] = []
+    colMetadata:List[ColMetadata] = []
 
 class ExcelConcatModel(ExcelModel2):
     select_cols: List[str]
