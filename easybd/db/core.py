@@ -1,6 +1,8 @@
+import xlsxwriter
 from sqlalchemy import create_engine, text
 import pandas as pd
 import xlsxwriter as xw
+import io
 
 
 class BaseDB:
@@ -138,6 +140,30 @@ class BaseDB:
             self.table_info.apply(lambda data: self._add_cell(data, sheet1, sheet2), axis=1)
 
         workbook.close()  # 关闭表
+
+    def table_info_to_excel_io(self, only_table=False) -> io.BytesIO:
+        """
+        数据库表结构信息导出为excel，写入内存返回bytes
+        :param only_table: 仅导出表信息
+        :return: Excel文件的bytes内容
+        """
+        output = io.BytesIO()  # 内存流
+
+        workbook = xlsxwriter.Workbook(output, {'nan_inf_to_errors': True})  # 以流创建工作簿
+        sheet1 = workbook.add_worksheet("表")  # 创建子表
+        sheet2 = workbook.add_worksheet("表元数据")  # 创建子表
+
+        # 设置格式
+        self.title_format = workbook.add_format({'bold': True, 'bg_color': '#5B9BD5'})
+        if only_table:
+            self.table_info.apply(lambda data: self._add_table_cell(data, sheet1), axis=1)
+        else:
+            self.table_info.apply(lambda data: self._add_cell(data, sheet1, sheet2), axis=1)
+
+        workbook.close()
+        output.seek(0)  # 回到流开头
+
+        return output
 
 
 if __name__ == '__main__':
