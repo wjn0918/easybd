@@ -1,0 +1,9 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile_Action
+    image: registry.cn-hangzhou.aliyuncs.com/wjn0918/soft:easybd-backend
+    container_name: easybd-api
+    ports:
+      - "5001:5001"
