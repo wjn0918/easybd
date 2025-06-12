@@ -1,0 +1,4 @@
+[submodule "easybd-web"]
+	path = easybd-web
+	url = git@github.com:wjn0918/easybd-web.git
+	branch = master
