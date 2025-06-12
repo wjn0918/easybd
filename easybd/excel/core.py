@@ -216,10 +216,10 @@ FROM
         table_fields = df["字段名称"].tolist()
         table_fields_comment = df["字段备注"].tolist()
         table_fields_type = df["字段类型"].tolist()
-        source_fields = df[["字段备注", "来源表别名", "字段名称"]].apply(lambda x: f"{x[1]}.{x[2]} -- {x[0]}",
-                                                                         axis=1).tolist()
-        df_not_null = df[df["来源字段"] != '']
         try:
+            source_fields = df[["字段备注", "来源表别名", "字段名称"]].apply(lambda x: f"{x[1]}.{x[2]} -- {x[0]}",
+                                                                             axis=1).tolist()
+            df_not_null = df[df["来源字段"] != '']
             source_fields_not_null = df_not_null[["字段备注", "来源表别名", "字段名称"]].apply(
                 lambda x: f"{x[1]}.{x[2]} -- {x[0]}", axis=1).tolist()
             source_table_info = df.groupby(["来源表", "来源表备注", "来源表别名"]).apply(
@@ -232,10 +232,11 @@ FROM
             t = TableInfo(table_name, table_comment, table_fields, table_fields_comment, table_fields_type)
             etl_t = ETLTableInfo(t, source_table_info, source_fields, source_fields_not_null=source_fields_not_null)
             return etl_t
-        except AttributeError as e:
+        except Exception as e:
             t = TableInfo(table_name, table_comment, table_fields, table_fields_comment, table_fields_type)
             return ETLTableInfo(t)
             logging.error(f"{table_name}  表未配置完成")
+
 
     def _create_database_table(self):
         t_all = self.data.groupby(["表名", "表备注"]).apply(lambda data: self._parse2table(data)).tolist()

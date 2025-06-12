@@ -26,8 +26,15 @@ class ColMetadata(BaseModel):
     prefix: str
     suffix: str
 
+class DataXConf(BaseModel):
+    readerType: str
+    writerType: str
+    parameter: Optional[str] = ""
+
 class ExcelInfo(FileModel):
     sheetName: Optional[str] = ""
+    tableName: Optional[str] = ""
+    dataXConf: Optional[DataXConf] = []
     transformSteps: List[TransformStep] = []
     colMetadata:List[ColMetadata] = []
 

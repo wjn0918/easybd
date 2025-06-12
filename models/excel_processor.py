@@ -1,11 +1,17 @@
+import json
+
 import pandas as pd
 from typing import List, Dict, Any, Tuple
 
+from easybd.conf import JDBCConf
+from easybd.datax import DataXReaderType
+from easybd.datax.datax_type import DataXWriterType
+from easybd.excel import Excel
 from models.excelModel import ExcelModel, ExcelInfo
 
 
 class ExcelProcessor:
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str, excel_info: ExcelInfo=None):
         """
         初始化Excel处理器
 
@@ -14,22 +20,117 @@ class ExcelProcessor:
         """
         self.file_path = file_path
         self.excel_file = pd.ExcelFile(file_path)
+        # 读取所有 sheet 到字典，避免后续重复读文件
+        self.sheets_df = {sheet: pd.read_excel(self.file_path, sheet_name=sheet) for sheet in
+                          self.excel_file.sheet_names}
+        self.excel_info = excel_info
+
+    def to_datax(self):
+        sheet_name = self.excel_info.sheetName
+        table_name = self.excel_info.tableName
+        datax_conf = self.excel_info.dataXConf
+        reader_type = datax_conf.readerType
+        writer_type = datax_conf.writerType
+        print(datax_conf)
+        if sheet_name not in self.sheets_df:
+            raise ValueError(f"Sheet {sheet_name} 不存在")
+        try:
+            datax_conf = json.loads(datax_conf.parameter)
+            print(datax_conf)
+        except Exception as e:
+            print("datax 未配置")
+
+        rt: DataXReaderType = DataXReaderType.__members__.get(reader_type)
+        wt: DataXWriterType = DataXWriterType.__members__.get(writer_type)
+
+
+        source_host = "10.200.10.22"
+        source_port = 5432
+        source_db = "schooletl"
+        source_user = "postgres"
+        source_password = "Pgsql@2024"
+        jdbc_conf = JDBCConf("pgsql", source_host, source_port, source_db, source_user, source_password)
+
+        target_host = "47.97.35.199"
+        target_port = 54321
+        target_db = "tx"
+        target_user = "postgres"
+        target_password = "Pgsql@2024"
+        target_jdbc_conf = JDBCConf("pgsql", target_host, target_port, target_db, target_user, target_password)
+
+        t = Excel(self.file_path, sheet_name=sheet_name, table_name=table_name)
+        datax_json = t.to_datax(rt, wt, t.table_meta[0], jdbc_conf, target_jdbc_conf)
+        # 数据库更改
+        if reader_type == DataXReaderType.PGSQL or reader_type == DataXReaderType.MYSQL:
+            datax_json = json.loads(datax_json)
+            datax_json['job']['content'][0]['reader']['parameter']['connection'][0]['jdbcUrl'][0] = datax_conf[
+                'readerJdbcUrl']
+            datax_json['job']['content'][0]['reader']['parameter']['username'] = datax_conf['readerUserName']
+            datax_json['job']['content'][0]['reader']['parameter']['password'] = datax_conf['readerPassword']
+            datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = datax_conf[
+                'writerJdbcUrl']
+            datax_json['job']['content'][0]['writer']['parameter']['username'] = datax_conf['writerUserName']
+            datax_json['job']['content'][0]['writer']['parameter']['password'] = datax_conf['writerPassword']
+            datax_json = json.dumps(datax_json)
+        # if writer_type == DataXWriterType.PGSQL:
+        #     datax_json = json.loads(datax_json)
+        #     writer_conf = json.loads(dataxModel.writer_conf)
+        #     datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = writer_conf['jdbcUrl']
+        #     datax_json['job']['content'][0]['writer']['parameter']['username'] = writer_conf['userName']
+        #     datax_json['job']['content'][0]['writer']['parameter']['password'] = writer_conf['passwd']
+        # if reader_type == DataXReaderType.HIKAPI:
+        #     if isinstance(datax_json, str):
+        #         datax_json = json.loads(datax_json)
+        #     hikapiConf = json.loads(dataxModel.hikapiConf)
+        #     print(f"hikapiConf : {hikapiConf}")
+        #     datax_json['job']['content'][0]['reader']['parameter']['host'] = hikapiConf['host']
+        #     datax_json['job']['content'][0]['reader']['parameter']['appKey'] = hikapiConf['appKey']
+        #     datax_json['job']['content'][0]['reader']['parameter']['appSecret'] = hikapiConf['appSecret']
+        #     datax_json['job']['content'][0]['reader']['parameter']['jsonData'] = hikapiConf['jsonData']
+        #     if writer_type == DataXWriterType.STREAM:
+        #         datax_json['job']['content'][0]['reader']['parameter']['page']["ifPage"] = False
+        #     datax_json = json.dumps(datax_json)
+        print(datax_json)
+
+        return datax_json
 
     def get_cols(self, sheet_name: str):
-        df = pd.read_excel(self.file_path, sheet_name=sheet_name)
-        print(df.columns)
-        return df.columns.tolist()
+        """
+                获取指定 sheet 的所有列名
 
+                Args:
+                    sheet_name: sheet名称
 
+                Returns:
+                    列名列表
+                """
+        if sheet_name not in self.sheets_df:
+            raise ValueError(f"Sheet {sheet_name} 不存在")
+        return list(self.sheets_df[sheet_name].columns)
 
-    def excel_info(self):
-        xls = pd.ExcelFile(self.file_path)
-        sheet_names = xls.sheet_names
-        return sheet_names
+    def get_tables(self, sheet_name: str):
+        """
+                获取指定 sheet 的所有列名
+
+                Args:
+                    sheet_name: sheet名称
+
+                Returns:
+                    列名列表
+                """
+        if sheet_name not in self.sheets_df:
+            raise ValueError(f"Sheet {sheet_name} 不存在")
+        df = self.sheets_df[sheet_name]
+        table_list = df[['表名', '表备注']].drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist()
+        return table_list
+
+    def get_sheets(self):
+        """获取所有 sheet 名称"""
+        return self.excel_file.sheet_names
 
 
     def to_json(self, excel_info: ExcelInfo):
-        df = self.df.copy()
+        df = self.sheets_df[self.excel_file.sheet_names[0]].copy()
         try:
             for step in excel_info.transformSteps:
                 if step.action == "filter":
@@ -59,10 +160,15 @@ class ExcelProcessor:
         Returns:
             处理结果
         """
+        if sheet_name not in self.sheets_df:
+            return f"错误：Sheet {sheet_name} 不存在"
+
+        df = self.sheets_df[sheet_name].copy()
+
+        for col in selected_columns:
+            if col not in df.columns:
+                return f"错误：列 {col} 不存在于数据中"
         try:
-            # 读取数据
-            print(self.file_path, sheet_name)
-            df = pd.read_excel(self.file_path, sheet_name=sheet_name)
             # 初始化结果列为空字符串
             df['r'] = ''
 
