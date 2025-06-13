@@ -1160,3 +1160,48 @@ pip install python-multipart
                 WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('dorm_counsellor')
                 
 2025-06-12 16:29:51,251 - 996 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.003838s ago] {}
+2025-06-13 11:03:01,361 - 14660 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 11:03:14,684 - 14660 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 11:10:42,739 - 42132 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:14:15,964 - 34360 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:15:50,521 - 1160 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:16:13,621 - 39144 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:16:13,627 - 39144 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:17:08,470 - 12552 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:17:08,477 - 12552 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:18:28,986 - 14284 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:18:28,996 - 14284 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:23:28,372 - 7412 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:23:28,378 - 7412 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:23:28,379 - 7412 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 原始json: {'job': {'setting': {'speed': {'channel': 2}, 'errorLimit': {'record': 0, 'percentage': 0.02}}, 'content': [{'reader': {'name': 'postgresqlreader', 'parameter': {'username': 'postgres', 'password': 'Pgsql@2024', 'column': ['vehicle_car_info_id', 'workspace_id', 'plate_no', 'person_type', 'user_id', 'name', 'job_no', 'phone', 'vehicle_type', 'vehicle_color', 'remark', 'vehicle_license_front', 'vehicle_license_back', 'driving_license_front', 'driving_license_back', 'group_name', 'created_at', 'created_by', 'created_by_account', 'updated_at', 'updated_by', 'updated_by_account', 'deleted', 'created_by_name', 'updated_by_name', 'id_card', 'depart_id', 'depart_name', 'send_flag', 'system_type', 'fail_reason', 'category_code'], 'connection': [{'table': ['t_vehicle_car_info'], 'jdbcUrl': ['jdbc:postgresql://10.200.10.22:5432/schooletl']}]}}, 'writer': {'name': 'streamwriter', 'parameter': {'encoding': 'UTF-8', 'print': True}}}]}}
+2025-06-13 11:26:06,709 - 22656 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:26:06,716 - 22656 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:29:01,992 - 12832 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:29:02,002 - 12832 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:29:02,003 - 12832 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换 writer 配置======
+2025-06-13 11:30:19,873 - 8056 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:30:19,879 - 8056 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:30:19,880 - 8056 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换 writer 配置======
+2025-06-13 11:34:25,576 - 1436 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 11:34:25,583 - 1436 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 11:34:25,583 - 1436 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换 writer 配置======
+2025-06-13 13:00:03,956 - 31748 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:00:03,971 - 31748 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换reader 配置======
+2025-06-13 13:00:03,971 - 31748 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换 writer 配置======
+2025-06-13 13:00:31,470 - 31748 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:00:31,482 - 31748 - D:\wjn\github\easybd\models\excel_processor.py - INFO: 开始替换 writer 配置======
+2025-06-13 13:38:00,299 - 25540 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:39:13,753 - 43200 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:39:45,668 - 8136 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:40:18,783 - 36756 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 学生基础数据
+2025-06-13 13:40:34,272 - 36756 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 教职工基础数据
+2025-06-13 13:40:53,574 - 42280 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 教职工基础数据
+2025-06-13 13:41:48,265 - 42280 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 教职工基础数据
+2025-06-13 13:45:02,227 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 教职工基础数据
+2025-06-13 13:45:18,095 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 车辆信息
+2025-06-13 13:59:22,452 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-06-13 14:03:19,255 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-06-13 14:03:22,737 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户
+2025-06-13 14:03:25,710 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-06-13 14:03:28,679 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-06-13 14:03:33,343 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤

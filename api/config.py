@@ -3,13 +3,16 @@ import uuid
 from fastapi import APIRouter, HTTPException
 
 from db import SessionDep, select, ConfigModel, ConfigModelUpdate
+from models.config import ConfigCreate
 
 router = APIRouter(prefix="/api/config", tags=["config"])
 
 
 @router.post("/create")
-def conf_create(conf:ConfigModel, session: SessionDep):
-    conf.id = str(uuid.uuid4())
+def conf_create(conf_create:ConfigCreate, session: SessionDep):
+    conf = ConfigModel(
+        **conf_create.dict()
+    )
     session.add(conf)
     session.commit()
     session.refresh(conf)

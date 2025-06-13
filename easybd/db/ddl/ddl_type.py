@@ -7,5 +7,5 @@ from easybd.db.ddl.ddl_mysql import DDlMysql
 
 class DDLType(Enum):
     HIVE = DDLHive()
-    PgSql = DDLPgSql()
-    Mysql = DDlMysql()
+    PGSQL = DDLPgSql()
+    MYSQL = DDlMysql()

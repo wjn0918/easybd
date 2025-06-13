@@ -55,8 +55,14 @@ def convert(excel_info: ExcelInfo, output_type: str = Query(...)):
 
         data = e.concat_columns(sheet_name=excel_info.sheetName,selected_columns=selected_columns,concat_template=concat_template)
     if output_type == "datax":
-        print(excel_info)
         data = e.to_datax()
+    if output_type == "sql":
+        sql_conf = excel_info.sqlConf
+        sql_type = sql_conf.sqlType
+        if sql_type == "ddl":
+            data = e.to_ddl()
+        if sql_type == "dml":
+            data = e.to_dml()
     return data
 
 @router.post('/convert2excel')

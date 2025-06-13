@@ -1,4 +1,5 @@
 import json
+import logging
 
 import pandas as pd
 from typing import List, Dict, Any, Tuple
@@ -6,6 +7,7 @@ from typing import List, Dict, Any, Tuple
 from easybd.conf import JDBCConf
 from easybd.datax import DataXReaderType
 from easybd.datax.datax_type import DataXWriterType
+from easybd.db.ddl import DDLType
 from easybd.excel import Excel
 from models.excelModel import ExcelModel, ExcelInfo
 
@@ -25,6 +27,19 @@ class ExcelProcessor:
                           self.excel_file.sheet_names}
         self.excel_info = excel_info
 
+
+    def to_dml(self):
+        t = Excel(self.file_path, sheet_name=self.excel_info.sheetName, table_name=self.excel_info.tableName)
+        return t.to_dml2()
+
+    def to_ddl(self):
+        t = Excel(self.file_path, sheet_name=self.excel_info.sheetName, table_name=self.excel_info.tableName)
+        db_type = self.excel_info.sqlConf.dbType.upper()
+        print(db_type)
+        ddl_type: DDLType = DDLType.__members__.get(self.excel_info.sqlConf.dbType.upper())
+        ddl_json = t.to_ddl2(ddl_type)
+        return ddl_json
+
     def to_datax(self):
         sheet_name = self.excel_info.sheetName
         table_name = self.excel_info.tableName
@@ -35,8 +50,8 @@ class ExcelProcessor:
         if sheet_name not in self.sheets_df:
             raise ValueError(f"Sheet {sheet_name} 不存在")
         try:
-            datax_conf = json.loads(datax_conf.parameter)
-            print(datax_conf)
+            parameter = json.loads(datax_conf.parameter)
+            print(parameter)
         except Exception as e:
             print("datax 未配置")
 
@@ -60,24 +75,20 @@ class ExcelProcessor:
 
         t = Excel(self.file_path, sheet_name=sheet_name, table_name=table_name)
         datax_json = t.to_datax(rt, wt, t.table_meta[0], jdbc_conf, target_jdbc_conf)
+        if isinstance(datax_json, str):
+            datax_json = json.loads(datax_json)  # 只做一次解析
         # 数据库更改
-        if reader_type == DataXReaderType.PGSQL or reader_type == DataXReaderType.MYSQL:
-            datax_json = json.loads(datax_json)
-            datax_json['job']['content'][0]['reader']['parameter']['connection'][0]['jdbcUrl'][0] = datax_conf[
+        if rt == DataXReaderType.PGSQL or rt == DataXReaderType.MYSQL:
+            logging.info("开始替换reader 配置======")
+            datax_json['job']['content'][0]['reader']['parameter']['connection'][0]['jdbcUrl'][0] = parameter[
                 'readerJdbcUrl']
-            datax_json['job']['content'][0]['reader']['parameter']['username'] = datax_conf['readerUserName']
-            datax_json['job']['content'][0]['reader']['parameter']['password'] = datax_conf['readerPassword']
-            datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = datax_conf[
-                'writerJdbcUrl']
-            datax_json['job']['content'][0]['writer']['parameter']['username'] = datax_conf['writerUserName']
-            datax_json['job']['content'][0]['writer']['parameter']['password'] = datax_conf['writerPassword']
-            datax_json = json.dumps(datax_json)
-        # if writer_type == DataXWriterType.PGSQL:
-        #     datax_json = json.loads(datax_json)
-        #     writer_conf = json.loads(dataxModel.writer_conf)
-        #     datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = writer_conf['jdbcUrl']
-        #     datax_json['job']['content'][0]['writer']['parameter']['username'] = writer_conf['userName']
-        #     datax_json['job']['content'][0]['writer']['parameter']['password'] = writer_conf['passwd']
+            datax_json['job']['content'][0]['reader']['parameter']['username'] = parameter['readerUserName']
+            datax_json['job']['content'][0]['reader']['parameter']['password'] = parameter['readerPassword']
+        if wt == DataXWriterType.PGSQL:
+            logging.info("开始替换 writer 配置======")
+            datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = parameter['writerJdbcUrl']
+            datax_json['job']['content'][0]['writer']['parameter']['username'] = parameter['writerUserName']
+            datax_json['job']['content'][0]['writer']['parameter']['password'] = parameter['writerPassword']
         # if reader_type == DataXReaderType.HIKAPI:
         #     if isinstance(datax_json, str):
         #         datax_json = json.loads(datax_json)
@@ -90,6 +101,7 @@ class ExcelProcessor:
         #     if writer_type == DataXWriterType.STREAM:
         #         datax_json['job']['content'][0]['reader']['parameter']['page']["ifPage"] = False
         #     datax_json = json.dumps(datax_json)
+        datax_json = json.dumps(datax_json)
         print(datax_json)
 
         return datax_json

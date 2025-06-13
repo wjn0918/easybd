@@ -31,10 +31,15 @@ class DataXConf(BaseModel):
     writerType: str
     parameter: Optional[str] = ""
 
+class SqlConf(BaseModel):
+    sqlType: str
+    dbType: str
+
 class ExcelInfo(FileModel):
     sheetName: Optional[str] = ""
     tableName: Optional[str] = ""
     dataXConf: Optional[DataXConf] = []
+    sqlConf: Optional[SqlConf] = []
     transformSteps: List[TransformStep] = []
     colMetadata:List[ColMetadata] = []
 

@@ -166,8 +166,13 @@ FROM
     def _get_data(self):
         data = pd.read_excel(self.file_path, sheet_name=self.sheet_name, keep_default_na=False)
         if self.table_name is not None:
+            print(self.table_name)
             data = data[data['表名'] == self.table_name]
-            log.logger.info(f"only init {data['表备注'].unique()[0]}")
+            unique_values = data['表备注'].unique()
+            if len(unique_values) > 0:
+                log.logger.info(f"only init {unique_values[0]}")
+            else:
+                log.logger.info(f"only init: {self.table_name}表备注字段为空或不存在")
         return data
 
     def _check_statement(self, row, statement):
