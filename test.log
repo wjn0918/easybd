@@ -1205,3 +1205,958 @@ pip install python-multipart
 2025-06-13 14:03:25,710 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
 2025-06-13 14:03:28,679 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
 2025-06-13 14:03:33,343 - 19108 - D:\wjn\github\easybd\easybd\excel\core.py - INFO: only init 用户_过滤
+2025-06-16 10:52:19,067 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 10:52:19,070 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:52:19,073 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 10:52:19,074 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:52:19,075 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 10:52:19,076 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:52:19,078 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:52:19,079 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 10:52:19,079 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00082s] {}
+2025-06-16 10:52:19,387 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_dp_clts_jyncll')
+                
+2025-06-16 10:52:19,388 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00057s] {}
+2025-06-16 10:52:19,398 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_dp_clts_jyncll')
+                
+2025-06-16 10:52:19,398 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01172s ago] {}
+2025-06-16 10:52:19,411 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:52:19,411 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll LIMIT 0
+2025-06-16 10:52:19,411 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00076s] {}
+2025-06-16 10:52:19,423 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll
+2025-06-16 10:52:19,423 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00029s] {}
+2025-06-16 10:52:19,448 - 40164 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 10:54:28,391 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 10:54:28,392 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:54:28,394 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 10:54:28,396 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:54:28,398 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 10:54:28,398 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:54:28,401 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:54:28,402 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 10:54:28,402 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00102s] {}
+2025-06-16 10:54:28,652 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 10:54:28,652 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00063s] {}
+2025-06-16 10:54:28,657 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 10:54:28,659 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.006632s ago] {}
+2025-06-16 10:54:28,680 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:54:28,681 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 10:54:28,681 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00084s] {}
+2025-06-16 10:54:28,698 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 10:54:28,699 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00048s] {}
+2025-06-16 10:54:28,712 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 10:57:35,485 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 10:57:35,486 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:57:35,489 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 10:57:35,489 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:57:35,490 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 10:57:35,490 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:57:35,494 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:57:35,494 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 10:57:35,494 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00063s] {}
+2025-06-16 10:57:35,643 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept')
+                
+2025-06-16 10:57:35,644 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00050s] {}
+2025-06-16 10:57:35,648 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept')
+                
+2025-06-16 10:57:35,648 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005437s ago] {}
+2025-06-16 10:57:35,659 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:57:35,659 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll LIMIT 0
+2025-06-16 10:57:35,659 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00071s] {}
+2025-06-16 10:57:35,672 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll
+2025-06-16 10:57:35,672 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00029s] {}
+2025-06-16 10:57:35,673 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 10:57:35,673 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00026s] {}
+2025-06-16 10:57:35,682 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 10:57:35,682 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00027s] {}
+2025-06-16 10:57:35,694 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 10:59:27,428 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 10:59:27,430 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:59:27,452 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 10:59:27,453 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:59:27,464 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 10:59:27,465 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 10:59:27,485 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:59:27,485 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 10:59:27,486 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00098s] {}
+2025-06-16 10:59:27,502 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 10:59:27,502 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00056s] {}
+2025-06-16 10:59:27,518 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 10:59:27,518 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01608s ago] {}
+2025-06-16 10:59:27,599 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 10:59:27,599 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll LIMIT 0
+2025-06-16 10:59:27,600 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00095s] {}
+2025-06-16 10:59:27,610 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:00:06,449 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:00:06,449 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:06,491 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:00:06,491 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:06,496 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:00:06,497 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:06,507 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:00:06,508 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:00:06,508 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00085s] {}
+2025-06-16 11:00:06,518 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:00:06,518 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00038s] {}
+2025-06-16 11:00:06,527 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:00:06,527 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.00947s ago] {}
+2025-06-16 11:00:19,769 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:00:19,769 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:19,790 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:00:19,790 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:19,803 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:00:19,804 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:00:19,826 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:00:19,826 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:00:19,827 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00108s] {}
+2025-06-16 11:00:19,843 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:00:19,843 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00040s] {}
+2025-06-16 11:00:19,857 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:00:19,858 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01513s ago] {}
+2025-06-16 11:00:19,955 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:00:19,955 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll LIMIT 0
+2025-06-16 11:00:19,955 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00116s] {}
+2025-06-16 11:00:19,967 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:01:49,120 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:01:49,120 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:01:49,138 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:01:49,138 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:01:49,147 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:01:49,147 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:01:49,164 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:01:49,164 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:01:49,164 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00105s] {}
+2025-06-16 11:01:49,178 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:01:49,179 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00046s] {}
+2025-06-16 11:01:49,191 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('ads_dp_clts_jyncll', 'ads_sys_dept', 'workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:01:49,192 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01393s ago] {}
+2025-06-16 11:01:49,248 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:01:49,249 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_dp_clts_jyncll LIMIT 0
+2025-06-16 11:01:49,249 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00103s] {}
+2025-06-16 11:01:49,256 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:05:41,848 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:05:41,848 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:05:41,872 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:05:41,872 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:05:41,882 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:05:41,883 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:05:41,903 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:05:41,903 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:05:41,905 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00104s] {}
+2025-06-16 11:05:41,923 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:05:41,923 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00062s] {}
+2025-06-16 11:05:41,939 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:05:41,939 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01723s ago] {}
+2025-06-16 11:05:42,035 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:05:42,035 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar LIMIT 0
+2025-06-16 11:05:42,035 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00093s] {}
+2025-06-16 11:05:42,052 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar
+2025-06-16 11:05:42,052 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00073s] {}
+2025-06-16 11:05:42,079 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar_bak LIMIT 0
+2025-06-16 11:05:42,080 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00070s] {}
+2025-06-16 11:05:42,091 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar_bak
+2025-06-16 11:05:42,092 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00072s] {}
+2025-06-16 11:05:42,116 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workperson LIMIT 0
+2025-06-16 11:05:42,116 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00060s] {}
+2025-06-16 11:05:42,127 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workperson
+2025-06-16 11:05:42,128 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00065s] {}
+2025-06-16 11:05:42,139 - 16900 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:30:54,541 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:30:54,541 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:30:54,544 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:30:54,544 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:30:54,546 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:30:54,546 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:30:54,549 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:30:54,549 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:30:54,550 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00075s] {}
+2025-06-16 11:30:54,736 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:30:54,736 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00053s] {}
+2025-06-16 11:30:54,740 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:30:54,741 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005032s ago] {}
+2025-06-16 11:30:54,773 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:30:54,774 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 11:30:54,774 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00084s] {}
+2025-06-16 11:30:54,783 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 11:30:54,783 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00053s] {}
+2025-06-16 11:30:54,796 - 14144 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:31:45,332 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:31:45,333 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:31:45,335 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:31:45,336 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:31:45,338 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:31:45,338 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:31:45,341 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:31:45,341 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:31:45,342 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00055s] {}
+2025-06-16 11:31:45,511 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:31:45,512 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00048s] {}
+2025-06-16 11:31:45,517 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:31:45,517 - 31812 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005002s ago] {}
+2025-06-16 11:32:26,325 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:32:26,325 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:26,328 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:32:26,328 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:26,330 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:32:26,330 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:26,333 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:26,333 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:32:26,333 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00044s] {}
+2025-06-16 11:32:26,497 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:26,497 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00040s] {}
+2025-06-16 11:32:26,501 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:26,502 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005069s ago] {}
+2025-06-16 11:32:26,514 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:26,514 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 11:32:26,514 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00091s] {}
+2025-06-16 11:32:26,522 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 11:32:26,522 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00051s] {}
+2025-06-16 11:32:26,533 - 34260 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:32:40,373 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:32:40,373 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:40,375 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:32:40,377 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:40,378 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:32:40,379 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:40,383 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:40,383 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:32:40,383 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00046s] {}
+2025-06-16 11:32:40,547 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:40,547 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00044s] {}
+2025-06-16 11:32:40,552 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:40,552 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005043s ago] {}
+2025-06-16 11:32:40,572 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:40,573 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 11:32:40,573 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00088s] {}
+2025-06-16 11:32:40,581 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 11:32:40,581 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00038s] {}
+2025-06-16 11:32:40,592 - 13796 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:32:50,036 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:32:50,037 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:50,039 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:32:50,039 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:50,040 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:32:50,040 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:32:50,043 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:50,043 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:32:50,044 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00048s] {}
+2025-06-16 11:32:50,222 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:50,223 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00045s] {}
+2025-06-16 11:32:50,228 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:32:50,228 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005178s ago] {}
+2025-06-16 11:32:50,299 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:32:50,300 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 11:32:50,300 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00062s] {}
+2025-06-16 11:32:50,307 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 11:32:50,307 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00041s] {}
+2025-06-16 11:32:50,320 - 24836 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:33:27,010 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:33:27,010 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:33:27,012 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:33:27,013 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:33:27,014 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:33:27,014 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:33:27,017 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:33:27,018 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'zjioc';
+        
+2025-06-16 11:33:27,018 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00093s] {}
+2025-06-16 11:33:27,186 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:33:27,187 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00047s] {}
+2025-06-16 11:33:27,191 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'zjioc' and TABLE_NAME in ('ads_sys_dept')
+                
+2025-06-16 11:33:27,191 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.005125s ago] {}
+2025-06-16 11:33:27,224 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:33:27,224 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept LIMIT 0
+2025-06-16 11:33:27,224 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00093s] {}
+2025-06-16 11:33:27,232 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM ads_sys_dept
+2025-06-16 11:33:27,232 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00038s] {}
+2025-06-16 11:33:27,244 - 2924 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:43:15,605 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:43:15,606 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:43:15,623 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:43:15,624 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:43:15,632 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:43:15,633 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:43:15,649 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:43:15,649 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:43:15,650 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00093s] {}
+2025-06-16 11:43:15,666 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:43:15,666 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00052s] {}
+2025-06-16 11:43:15,680 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:43:15,680 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01419s ago] {}
+2025-06-16 11:43:15,741 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:43:15,741 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM "workcalendar"
+2025-06-16 11:43:15,743 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00083s] {}
+2025-06-16 11:43:15,748 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:44:11,316 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:44:11,316 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:11,345 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:44:11,345 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:11,357 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:44:11,358 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:11,383 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:44:11,384 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:44:11,384 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00087s] {}
+2025-06-16 11:44:11,404 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:44:11,404 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00040s] {}
+2025-06-16 11:44:11,421 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:44:11,421 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01786s ago] {}
+2025-06-16 11:44:11,539 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:44:11,539 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM "workcalendar"
+2025-06-16 11:44:11,539 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00070s] {}
+2025-06-16 11:44:11,553 - 9588 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:44:52,712 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:44:52,713 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:52,731 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:44:52,731 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:52,739 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:44:52,739 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:44:52,755 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:44:52,755 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:44:52,756 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00080s] {}
+2025-06-16 11:44:52,769 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:44:52,769 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00035s] {}
+2025-06-16 11:44:52,780 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:44:52,780 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01158s ago] {}
+2025-06-16 11:44:52,866 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:44:52,866 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM "workcalendar"
+2025-06-16 11:44:52,866 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00082s] {}
+2025-06-16 11:44:52,876 - 37320 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:46:48,192 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:46:48,193 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:46:48,216 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:46:48,216 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:46:48,226 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:46:48,226 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:46:48,247 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:46:48,247 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:46:48,248 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00089s] {}
+2025-06-16 11:46:48,264 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:46:48,265 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00040s] {}
+2025-06-16 11:46:48,280 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:46:48,281 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01622s ago] {}
+2025-06-16 11:46:48,370 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:46:48,371 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM "workcalendar"
+2025-06-16 11:46:48,371 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00084s] {}
+2025-06-16 11:46:48,381 - 20152 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:50:12,958 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:50:12,959 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:50:12,977 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:50:12,977 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:50:12,988 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:50:12,988 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:50:13,004 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:50:13,004 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:50:13,004 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00053s] {}
+2025-06-16 11:50:13,018 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:50:13,019 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00034s] {}
+2025-06-16 11:50:13,031 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:50:13,031 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01258s ago] {}
+2025-06-16 11:51:08,629 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:51:08,629 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:51:08,643 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:51:08,643 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:51:08,650 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:51:08,650 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:51:08,662 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:51:08,662 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:51:08,662 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00097s] {}
+2025-06-16 11:51:08,675 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:51:08,675 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00053s] {}
+2025-06-16 11:51:08,685 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:51:08,686 - 16312 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01108s ago] {}
+2025-06-16 11:52:51,459 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:52:51,459 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:52:51,478 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:52:51,478 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:52:51,487 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:52:51,487 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:52:51,504 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:52:51,504 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:52:51,505 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00089s] {}
+2025-06-16 11:52:51,518 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:52:51,519 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00036s] {}
+2025-06-16 11:52:51,530 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:52:51,530 - 10696 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.0117s ago] {}
+2025-06-16 11:53:09,694 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:53:09,694 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:09,707 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:53:09,708 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:09,713 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:53:09,714 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:09,724 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:53:09,724 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:53:09,724 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00075s] {}
+2025-06-16 11:53:09,736 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:53:09,736 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00049s] {}
+2025-06-16 11:53:09,745 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:53:09,746 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.009907s ago] {}
+2025-06-16 11:53:09,827 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:53:09,827 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM "workcalendar"
+2025-06-16 11:53:09,829 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00064s] {}
+2025-06-16 11:53:09,837 - 16616 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:53:42,274 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:53:42,274 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:42,293 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:53:42,294 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:42,303 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:53:42,303 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:53:42,320 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:53:42,320 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:53:42,320 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00073s] {}
+2025-06-16 11:53:42,336 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:53:42,336 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00037s] {}
+2025-06-16 11:53:42,348 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 11:53:42,349 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01345s ago] {}
+2025-06-16 11:53:42,424 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:53:42,425 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar
+2025-06-16 11:53:42,425 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00065s] {}
+2025-06-16 11:53:42,446 - 16748 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 11:54:10,609 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 11:54:10,610 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:54:10,623 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 11:54:10,624 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:54:10,630 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 11:54:10,630 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 11:54:10,642 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:54:10,643 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 11:54:10,643 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00106s] {}
+2025-06-16 11:54:10,655 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:54:10,656 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00039s] {}
+2025-06-16 11:54:10,665 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 11:54:10,665 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.009736s ago] {}
+2025-06-16 11:54:10,745 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 11:54:10,745 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar
+2025-06-16 11:54:10,745 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00063s] {}
+2025-06-16 11:54:10,770 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar_bak
+2025-06-16 11:54:10,770 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00039s] {}
+2025-06-16 11:54:10,782 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workperson
+2025-06-16 11:54:10,782 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00027s] {}
+2025-06-16 11:54:10,791 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 12:10:00,969 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 12:10:00,969 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:00,991 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 12:10:00,991 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:01,005 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 12:10:01,006 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:01,029 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 12:10:01,029 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 12:10:01,029 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00096s] {}
+2025-06-16 12:10:01,050 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 12:10:01,050 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00038s] {}
+2025-06-16 12:10:01,065 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar', 'workcalendar_bak', 'workperson')
+                
+2025-06-16 12:10:01,065 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01579s ago] {}
+2025-06-16 12:10:01,253 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 12:10:01,253 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar
+2025-06-16 12:10:01,253 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00064s] {}
+2025-06-16 12:10:01,280 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workcalendar_bak
+2025-06-16 12:10:01,280 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00039s] {}
+2025-06-16 12:10:01,295 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT * FROM workperson
+2025-06-16 12:10:01,295 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00036s] {}
+2025-06-16 12:10:01,305 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: ROLLBACK
+2025-06-16 12:10:10,287 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 12:10:10,288 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:10,305 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 12:10:10,305 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:10,312 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 12:10:10,312 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:10,328 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 12:10:10,328 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 12:10:10,330 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00072s] {}
+2025-06-16 12:10:10,340 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 12:10:10,341 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00040s] {}
+2025-06-16 12:10:10,353 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 12:10:10,353 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01312s ago] {}
+2025-06-16 12:10:20,400 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT DATABASE()
+2025-06-16 12:10:20,401 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:20,423 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@sql_mode
+2025-06-16 12:10:20,423 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:20,432 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: SELECT @@lower_case_table_names
+2025-06-16 12:10:20,432 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [raw sql] {}
+2025-06-16 12:10:20,457 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: BEGIN (implicit)
+2025-06-16 12:10:20,458 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT 
+                    TABLE_NAME,
+                    COLUMN_NAME,
+                    COLUMN_TYPE,
+                    COLUMN_COMMENT
+                FROM 
+                    INFORMATION_SCHEMA.COLUMNS
+                WHERE 
+                    TABLE_SCHEMA = 'worktime';
+        
+2025-06-16 12:10:20,458 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00092s] {}
+2025-06-16 12:10:20,485 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 12:10:20,485 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [generated in 0.00039s] {}
+2025-06-16 12:10:20,501 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: 
+                SELECT TABLE_NAME, TABLE_COMMENT, TABLE_ROWS
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'worktime' and TABLE_NAME in ('workcalendar')
+                
+2025-06-16 12:10:20,501 - 20372 - D:\soft\miniconda3\envs\python3.10\lib\site-packages\sqlalchemy\engine\base.py - INFO: [cached since 0.01693s ago] {}
