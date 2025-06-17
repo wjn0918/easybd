@@ -3,7 +3,7 @@ import uuid
 from fastapi import APIRouter, HTTPException
 
 from db import SessionDep, select, ConfigModel, ConfigModelUpdate
-from models.config import ConfigCreate
+from models.config import ConfigCreate, ConfigUpdate
 
 router = APIRouter(prefix="/api/config", tags=["config"])
 
@@ -44,8 +44,7 @@ def conf_delete(id, session: SessionDep):
 #
 #
 @router.post('/update/{id}')
-def conf_update(id, update_model:ConfigModelUpdate, session: SessionDep):
-    print(update_model)
+def conf_update(id, update_model:ConfigUpdate, session: SessionDep):
     conf_model = session.get(ConfigModel, id)
     if not conf_model:
         raise HTTPException(status_code=404, detail="Hero not found")

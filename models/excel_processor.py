@@ -84,6 +84,12 @@ class ExcelProcessor:
                 'readerJdbcUrl']
             datax_json['job']['content'][0]['reader']['parameter']['username'] = parameter['readerUserName']
             datax_json['job']['content'][0]['reader']['parameter']['password'] = parameter['readerPassword']
+        if rt == DataXReaderType.SRAPI:
+            datax_json['job']['content'][0]['reader']['parameter']['appId'] = parameter['appId']
+            datax_json['job']['content'][0]['reader']['parameter']['appSecret'] = parameter['appSecret']
+            datax_json['job']['content'][0]['reader']['parameter']['compId'] = parameter['compId']
+            datax_json['job']['content'][0]['reader']['parameter']['debug'] = False
+            datax_json['job']['content'][0]['reader']['parameter']['body'] = parameter['body']
         if wt == DataXWriterType.PGSQL:
             logging.info("开始替换 writer 配置======")
             datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = parameter['writerJdbcUrl']
@@ -140,6 +146,23 @@ class ExcelProcessor:
         """获取所有 sheet 名称"""
         return self.excel_file.sheet_names
 
+    def filter_data(self, sheet_name:str = None):
+        df = self.sheets_df[sheet_name].copy()
+        try:
+            for step in self.excel_info.transformSteps:
+                if step.action == "filter":
+                    df = df[eval(step.expr, {"__builtins__": {}}, {"df": df})]
+                elif step.action == "assign":
+                    exec(step.expr, {"__builtins__": {}}, {"df": df})
+                elif step.action == "rename":
+                    df = df.rename(columns=step.expr)
+                elif step.action == "dropna":
+                    df = df.dropna(subset=step.expr)
+                else:
+                    return {"error": f"不支持的操作类型: {step.action}"}
+        except Exception as e:
+            return {"error": f"处理数据失败: {str(e)}"}
+        return df
 
     def to_json(self, excel_info: ExcelInfo):
         df = self.sheets_df[self.excel_file.sheet_names[0]].copy()
@@ -174,9 +197,8 @@ class ExcelProcessor:
         """
         if sheet_name not in self.sheets_df:
             return f"错误：Sheet {sheet_name} 不存在"
-
-        df = self.sheets_df[sheet_name].copy()
-
+        df = self.filter_data(sheet_name)
+        print(df)
         for col in selected_columns:
             if col not in df.columns:
                 return f"错误：列 {col} 不存在于数据中"
