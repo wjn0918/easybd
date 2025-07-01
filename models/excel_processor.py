@@ -90,7 +90,7 @@ class ExcelProcessor:
             datax_json['job']['content'][0]['reader']['parameter']['compId'] = parameter['compId']
             datax_json['job']['content'][0]['reader']['parameter']['debug'] = False
             datax_json['job']['content'][0]['reader']['parameter']['body'] = parameter['body']
-        if wt == DataXWriterType.PGSQL:
+        if wt == DataXWriterType.PGSQL or wt == DataXWriterType.CLICKHOUSE:
             logging.info("开始替换 writer 配置======")
             datax_json['job']['content'][0]['writer']['parameter']['connection'][0]['jdbcUrl'] = parameter['writerJdbcUrl']
             datax_json['job']['content'][0]['writer']['parameter']['username'] = parameter['writerUserName']

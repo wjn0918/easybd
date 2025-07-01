@@ -7,6 +7,7 @@ from easybd.datax.template.reader.template_reader_mysql import TemplateReaderMys
 from easybd.datax.template.reader.template_reader_postgresql import TemplateReaderPostgresql
 from easybd.datax.template.reader.template_reader_sr import TemplateReaderSr
 from easybd.datax.template.reader.template_reader_stream import TemplateReaderStream
+from easybd.datax.template.writer.template_writer_clickhouse import TemplateWriterClickHouse
 from easybd.datax.template.writer.template_writer_hdfs import TempalteWriterHdfs
 from easybd.datax.template.writer.template_writer_mysql import TemplateWriterMysql
 from easybd.datax.template.writer.template_writer_pgsql import TemplateWriterPostgresql
@@ -27,3 +28,4 @@ class DataXWriterType(Enum):
     PGSQL = TemplateWriterPostgresql()
     MYSQL = TemplateWriterMysql()
     HDFS = TempalteWriterHdfs()
+    CLICKHOUSE = TemplateWriterClickHouse()
