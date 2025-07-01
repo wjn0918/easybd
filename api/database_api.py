@@ -11,7 +11,7 @@ from fastapi.responses import PlainTextResponse,StreamingResponse,FileResponse
 from starlette.background import BackgroundTask
 
 from easybd.db import PostgreSql, Mysql, BaseDB
-from models.dbModel import ConnectionResponse, DBConfig, ExportRequest
+from models.dbModel import ConnectionResponse, DBConfig, ExportRequest, SyncTarget
 from fastapi import FastAPI, HTTPException
 
 router = APIRouter(prefix="/api/database", tags=["database"])
@@ -126,3 +126,52 @@ async def export_table_structure(req: ExportRequest):
         print(e)
         shutil.rmtree(tmpdir, ignore_errors=True)
         raise HTTPException(status_code=500, detail=f"转换失败: {str(e)}")
+
+
+@router.post("/sync2target")
+async def sync2target(req: SyncTarget):
+    source_conf = req.source
+    target_conf = req.target
+    baseDB: BaseDB = None
+
+    s_dbtype = source_conf['dbType']
+    s_host = source_conf['host']
+    s_port = source_conf['port']
+    s_username = source_conf['username']
+    s_password = source_conf['password']
+    s_database = source_conf['database']
+    print(source_conf)
+    print(s_database)
+    s_tables = source_conf['tables']
+    if s_dbtype == "pgsql":
+        baseDB = PostgreSql(s_host, s_port, s_username, s_password, s_database, "public",
+                            table_names=s_tables)
+    # if s_dbtype == "mysql":
+    #     baseDB = Mysql(s_host, s_port, s_username, s_password, s_database, table_names=s_tables)
+    # else:
+    #     raise HTTPException(status_code=400, detail="Unsupported database type")
+    for t in s_tables:
+        baseDB.sync_clickhouse_table(target_conf, t)
+
+
+    return {"message": "同步成功"}
+    # if req.dbType == "pgsql":
+    #     pg = PostgreSql(req.host, req.port, req.username, req.password, req.database, "public",table_names=req.tables)
+    #     output = pg.table_info_to_excel_io()
+    #     headers = {
+    #         "Content-Disposition": 'attachment; filename="export.xlsx"'
+    #     }
+    #     return StreamingResponse(output,
+    #                              media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    #                              headers=headers)
+    # if req.dbType == "mysql":
+    #     mysql = Mysql(req.host, req.port, req.username, req.password, req.database,table_names=req.tables)
+    #     output = mysql.table_info_to_excel_io()
+    #     headers = {
+    #         "Content-Disposition": 'attachment; filename="export.xlsx"'
+    #     }
+    #     return StreamingResponse(output,
+    #                              media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    #                              headers=headers)
+    # else:
+    #     raise HTTPException(status_code=400, detail="Unsupported database type")

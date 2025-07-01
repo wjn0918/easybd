@@ -37,3 +37,7 @@ class ExportRequest(BaseModel):
     password: str
     database: str
     tables: List[str]
+
+class SyncTarget(BaseModel):
+    source: dict
+    target: dict

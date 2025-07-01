@@ -3,6 +3,8 @@ from sqlalchemy import create_engine, text
 import pandas as pd
 import xlsxwriter as xw
 import io
+import re
+import clickhouse_connect
 
 
 class BaseDB:
@@ -164,6 +166,78 @@ class BaseDB:
         output.seek(0)  # 回到流开头
 
         return output
+
+
+    PG_TO_CH_TYPE = {
+        'integer': 'Int32',
+        'int': 'Int32',
+        'bigint': 'Int64',
+        'smallint': 'Int16',
+        'serial': 'Int32',
+        'bigserial': 'Int64',
+        'boolean': 'UInt8',
+        'text': 'String',
+        'character varying': 'String',
+        'varchar': 'String',
+        'timestamp without time zone': 'DateTime',
+        'timestamp with time zone': 'DateTime',
+        'timestamptz': 'DateTime',
+        'date': 'Date',
+        'double precision': 'Float64',
+        'real': 'Float32',
+        'numeric': 'Float64',
+        "bool": "UInt8",
+    }
+
+    def _clean_pg_type(self, pg_type: str) -> str:
+        # 去除括号及其内容，如 varchar(36) -> varchar
+        cleaned = re.sub(r"\(.*?\)", "", pg_type)
+
+        # 去除非字母字符（如末尾数字或长度说明），如 varchar36 -> varchar
+        cleaned = re.sub(r"[^a-zA-Z]+", "", cleaned)
+
+        return cleaned.strip().lower()
+
+    def generate_clickhouse_ddl(self,table_name, columns_df: pd.DataFrame):
+        ddl_cols = []
+        for _, row in columns_df.iterrows():
+            name = row["col_name"]
+            raw_type = row["col_type"]
+            pg_type = self._clean_pg_type(raw_type)  # 👈 清理类型字符串
+
+            ch_type = self.PG_TO_CH_TYPE.get(pg_type)
+            if not ch_type:
+                raise ValueError(f"未映射 PostgreSQL 类型：{pg_type}")
+            ddl_cols.append(f"`{name}` {ch_type}")
+        col_def = ',\n  '.join(ddl_cols)
+        ddl = f"CREATE TABLE IF NOT EXISTS {table_name} (\n  {col_def}\n) ENGINE = MergeTree ORDER BY tuple();"
+        return ddl
+
+    # === 检查并在 ClickHouse 中创建表 ===
+
+    def sync_clickhouse_table(self, ch_cfg, table_name):
+        client = clickhouse_connect.get_client(
+            host=ch_cfg['host'],
+            port=ch_cfg['port'],
+            username=ch_cfg['username'],
+            password=ch_cfg['password']
+        )
+
+        existing_tables = client.query(f"SHOW TABLES FROM {ch_cfg['database']}").result_rows
+        table_exists = any(row[0] == table_name for row in existing_tables)
+
+        columns_df = pd.DataFrame(self.table_info['table_cols'].to_list()[0])[['col_name', 'col_type']]
+
+        if table_exists:
+            print(f"✅ 表 `{table_name}` 已存在于 ClickHouse。")
+        else:
+            ddl = self.generate_clickhouse_ddl(table_name, columns_df)
+            print(f"📝 创建 ClickHouse 表 SQL：\n{ddl}")
+            client.command(f"USE {ch_cfg['database']}")
+            client.command(ddl)
+            print(f"✅ 已在 ClickHouse 创建表 `{table_name}`。")
+
+
 
 
 if __name__ == '__main__':
