@@ -34,8 +34,11 @@ class TemplateWriterClickHouse:
                         ]
                     }
                 ],
-                "postSql": [
-                ]
+                "postSql": [],
+                "batchSize": 65536,
+                "batchByteSize": 134217728,
+                "dryRun": False,
+                "writeMode": "insert"
             }
         }
         return template_writer_clickhouse

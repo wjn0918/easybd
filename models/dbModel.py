@@ -41,3 +41,8 @@ class ExportRequest(BaseModel):
 class SyncTarget(BaseModel):
     source: dict
     target: dict
+
+class ddlModel(BaseModel):
+    ddlType: str
+    source: dict
+    tables:List[str]

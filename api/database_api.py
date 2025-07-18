@@ -4,6 +4,8 @@ import shutil
 import sqlite3
 import tempfile
 import urllib.parse
+
+import pandas as pd
 from fastapi import APIRouter,Query
 from sqlalchemy import create_engine, inspect,text
 from sqlalchemy.exc import SQLAlchemyError
@@ -11,7 +13,7 @@ from fastapi.responses import PlainTextResponse,StreamingResponse,FileResponse
 from starlette.background import BackgroundTask
 
 from easybd.db import PostgreSql, Mysql, BaseDB
-from models.dbModel import ConnectionResponse, DBConfig, ExportRequest, SyncTarget
+from models.dbModel import ConnectionResponse, DBConfig, ExportRequest, SyncTarget, ddlModel
 from fastapi import FastAPI, HTTPException
 
 router = APIRouter(prefix="/api/database", tags=["database"])
@@ -155,23 +157,31 @@ async def sync2target(req: SyncTarget):
 
 
     return {"message": "同步成功"}
-    # if req.dbType == "pgsql":
-    #     pg = PostgreSql(req.host, req.port, req.username, req.password, req.database, "public",table_names=req.tables)
-    #     output = pg.table_info_to_excel_io()
-    #     headers = {
-    #         "Content-Disposition": 'attachment; filename="export.xlsx"'
-    #     }
-    #     return StreamingResponse(output,
-    #                              media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    #                              headers=headers)
-    # if req.dbType == "mysql":
-    #     mysql = Mysql(req.host, req.port, req.username, req.password, req.database,table_names=req.tables)
-    #     output = mysql.table_info_to_excel_io()
-    #     headers = {
-    #         "Content-Disposition": 'attachment; filename="export.xlsx"'
-    #     }
-    #     return StreamingResponse(output,
-    #                              media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    #                              headers=headers)
-    # else:
-    #     raise HTTPException(status_code=400, detail="Unsupported database type")
+
+
+@router.post("/convert-to-ddl")
+async def convert2ddl(req: ddlModel):
+    source_conf = req.source
+    ddl_type = req.ddlType
+    s_tables = req.tables
+    baseDB: BaseDB = None
+
+    s_dbtype = source_conf['dbtype']
+    s_host = source_conf['host']
+    s_port = source_conf['port']
+    s_username = source_conf['username']
+    s_password = source_conf['password']
+    s_database = source_conf['database']
+
+    if s_dbtype == "pgsql":
+        baseDB = PostgreSql(s_host, s_port, s_username, s_password, s_database, "public",
+                            table_names=s_tables)
+
+    columns_df = pd.DataFrame(baseDB.table_info['table_cols'].to_list()[0])[['col_name', 'col_type']]
+
+    if ddl_type == "clickhouse":
+
+        ddl = baseDB.generate_clickhouse_ddl(s_tables[0], columns_df)
+    else:
+        ddl = "目前不支持"
+    return ddl

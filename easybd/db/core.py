@@ -209,8 +209,8 @@ class BaseDB:
             if not ch_type:
                 raise ValueError(f"未映射 PostgreSQL 类型：{pg_type}")
             ddl_cols.append(f"`{name}` {ch_type}")
-        col_def = ',\n  '.join(ddl_cols)
-        ddl = f"CREATE TABLE IF NOT EXISTS {table_name} (\n  {col_def}\n) ENGINE = MergeTree ORDER BY tuple();"
+        col_def = ', '.join(ddl_cols)
+        ddl = f"CREATE TABLE IF NOT EXISTS {table_name} ( {col_def}) ENGINE = MergeTree ORDER BY tuple();"
         return ddl
 
     # === 检查并在 ClickHouse 中创建表 ===

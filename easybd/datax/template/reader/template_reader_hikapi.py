@@ -29,6 +29,7 @@ class TemplateReaderHikapi:
         template_reader_hikapi = {
             "name": "hikapireader",
             "parameter": {
+                "debug": True,
                 "agreement": "https",
                 "host": f"{host}",
                 "appKey": f"{app_key}",
@@ -40,10 +41,9 @@ class TemplateReaderHikapi:
                 },
                 "jsonData": {
                     "pageNo": 1,
-                    "pageSize": 1000
+                    "pageSize": 10
                 },
                 "page": {
-                    "ifPage": True,
                     "countField": "data.total",
                     "dataPath": "data.list",
                     "paramPageIndexField": "pageNo",
