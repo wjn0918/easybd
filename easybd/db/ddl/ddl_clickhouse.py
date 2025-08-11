@@ -31,11 +31,13 @@ class DDLClickHouse:
             field_comment = f"COMMENT ON COLUMN {table_name}.{column_name} IS '{column_comment}';"
             fields.append(field)
             fields_comment.append(field_comment)
-        all_field = ",\t".join(fields)
-        all_field_comment = "\r\n".join(fields_comment)
+        all_field = ",\n\t".join(fields)
         sqls = f"""
 -- {table_name}
-CREATE TABLE IF NOT EXISTS {table_name}({all_field}) ENGINE = MergeTree() ORDER BY tuple();
+CREATE TABLE IF NOT EXISTS {table_name}(
+    {all_field}
+) 
+ENGINE = MergeTree() ORDER BY tuple();
 ;
 
                 """

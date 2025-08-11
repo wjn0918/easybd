@@ -1,0 +1,1 @@
+python -m pip install apache-dolphinscheduler -i https://pypi.tuna.tsinghua.edu.cn/simple/

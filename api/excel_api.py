@@ -29,7 +29,9 @@ def get_sheet_info(excel_info: ExcelInfo):
 @router.post('/tables')
 def get_sheet_tables(excel_info: ExcelInfo):
     e = ExcelProcessor(excel_info.filePath)
-    print(e.get_tables(excel_info.sheetName))
+    # print(e.get_tables(excel_info.sheetName))
+    print("=========")
+    print(excel_info)
     return {
         "tables": e.get_tables(excel_info.sheetName)
     }

@@ -139,7 +139,8 @@ class ExcelProcessor:
         if sheet_name not in self.sheets_df:
             raise ValueError(f"Sheet {sheet_name} 不存在")
         df = self.sheets_df[sheet_name]
-        table_list = df[['表名', '表备注']].drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist()
+        table_list = (df[['表名', '表备注']].assign(表备注=lambda d: d['表备注'].replace('', pd.NA).fillna(d['表名']))
+                      .drop_duplicates().apply(lambda x: tuple(x), axis=1).values.tolist())
         return table_list
 
     def get_sheets(self):
@@ -165,22 +166,28 @@ class ExcelProcessor:
         return df
 
     def to_json(self, excel_info: ExcelInfo):
-        df = self.sheets_df[self.excel_file.sheet_names[0]].copy()
+        df = self.sheets_df[excel_info.sheetName].copy()
         try:
             for step in excel_info.transformSteps:
+                if step.action == "select":
+                    df = eval(step.expr, {"__builtins__": {}}, {"df": df})
+                    continue
                 if step.action == "filter":
                     df = df[eval(step.expr, {"__builtins__": {}}, {"df": df})]
+                    continue
                 elif step.action == "assign":
                     exec(step.expr, {"__builtins__": {}}, {"df": df})
+                    continue
                 elif step.action == "rename":
                     df = df.rename(columns=step.expr)
+                    continue
                 elif step.action == "dropna":
                     df = df.dropna(subset=step.expr)
+                    continue
                 else:
                     return {"error": f"不支持的操作类型: {step.action}"}
         except Exception as e:
             return {"error": f"处理数据失败: {str(e)}"}
-
         return df.to_json(orient='records', force_ascii=False)
 
     def concat_columns(self, sheet_name:str, selected_columns: List[str],
