@@ -1,5 +1,8 @@
 from easybd.db.core import BaseDB
 from urllib.parse import quote_plus as urlquote
+from sqlalchemy import create_engine, MetaData
+from sqlalchemy.engine import reflection
+from sqlalchemy.schema import CreateTable
 
 
 class PostgreSql(BaseDB):
@@ -18,6 +21,7 @@ class PostgreSql(BaseDB):
 
 
         """
+        self.table_names = table_names
         if table_names:
             tables = str(table_names).replace("[","(").replace("]",")")
             filter_table = f"and tablename in {tables}"
@@ -87,6 +91,47 @@ class PostgreSql(BaseDB):
             """
         url = f"postgresql+psycopg2://{username}:{urlquote(password)}@{host}:{port}/{dbname}"
         super().__init__(url, sql_table_comment, sql_table_col)
+        self.ddl = self._generate_ddl()
+
+    def _generate_ddl(self):
+
+        metadata = MetaData()
+        metadata.reflect(bind=self.engine)
+
+        insp = reflection.Inspector.from_engine(self.engine)
+        schema_name = "public"
+
+        all_ddls = []
+
+        for table_name in self.table_names:
+            if table_name not in metadata.tables:
+                continue  # 跳过不存在的表
+
+            # 基础 CREATE TABLE 语句
+            ddl = str(CreateTable(metadata.tables[table_name]).compile(self.engine))
+
+            # 表备注
+            table_comment = insp.get_table_comment(table_name, schema=schema_name)
+            comments = []
+            if table_comment.get("text"):
+                comments.append(
+                    f"COMMENT ON TABLE {schema_name}.{table_name} IS '{table_comment['text']}';"
+                )
+
+            # 字段备注
+            columns = insp.get_columns(table_name, schema=schema_name)
+            for col in columns:
+                if col.get("comment"):
+                    comments.append(
+                        f"COMMENT ON COLUMN {schema_name}.{table_name}.{col['name']} IS '{col['comment']}';"
+                    )
+
+            # 合并
+            full_ddl = ddl + ";\n" + "\n".join(comments)
+            all_ddls.append(full_ddl)
+
+        return "\n\n".join(all_ddls)
+
 
 
 if __name__ == '__main__':

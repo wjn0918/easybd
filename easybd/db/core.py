@@ -9,7 +9,7 @@ import clickhouse_connect
 
 class BaseDB:
     def __init__(self, url, *args):
-        self.engine = create_engine(url, echo=True)
+        self.engine = create_engine(url, echo=False)
         self.connection = self.engine.connect()
         self.table_comment_sql = args[0]
         self.table_column_sql = args[1]

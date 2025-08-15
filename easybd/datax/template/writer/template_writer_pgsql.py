@@ -16,7 +16,7 @@ class TemplateWriterPostgresql:
             jdbc_conf: JDBCConf = args[2]
 
         table_name = table.table_info.table_name
-        columns = [field for field in table.table_info.table_fields]
+        columns = [field.lower() for field in table.table_info.table_fields]
         template_writer_hive = {
             "name": "postgresqlwriter",
             "parameter": {

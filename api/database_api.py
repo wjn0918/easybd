@@ -173,15 +173,19 @@ async def convert2ddl(req: ddlModel):
     s_password = source_conf['password']
     s_database = source_conf['database']
 
+    ddl = ""
+
     if s_dbtype == "pgsql":
         baseDB = PostgreSql(s_host, s_port, s_username, s_password, s_database, "public",
                             table_names=s_tables)
+        ddl = baseDB.ddl
 
     columns_df = pd.DataFrame(baseDB.table_info['table_cols'].to_list()[0])[['col_name', 'col_type']]
 
     if ddl_type == "clickhouse":
-
         ddl = baseDB.generate_clickhouse_ddl(s_tables[0], columns_df)
+    if ddl_type == "pgsql":
+        return ddl
     else:
         ddl = "目前不支持"
     return ddl

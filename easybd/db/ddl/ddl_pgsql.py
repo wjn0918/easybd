@@ -14,7 +14,7 @@ class DDLPgSql:
 
         for i in range(0, len(table_fields)):
             # column_name = camel_to_snake(table_fields[i])
-            column_name = table_fields[i]
+            column_name = table_fields[i].lower()
             column_comment = "" if isinstance(table_fields_comment[i], float) else table_fields_comment[i]
             tft_upper = table_fields_type[i].upper()
             if tft_upper == "NUMBER" or tft_upper.startswith("TINYINT") or tft_upper.startswith("INT") or tft_upper.startswith("NUMERIC") or tft_upper.startswith("BIGINT"):

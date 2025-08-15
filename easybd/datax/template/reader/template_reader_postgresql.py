@@ -13,7 +13,7 @@ class TemplateReaderPostgresql:
         jdbc_conf: JDBCConf = args[1]
         table_info = table.table_info
         tn = table_info.table_name
-        columns = [f"\"{i}\"" for i in table_info.table_fields]
+        columns = [f"\"{i.lower()}\"" for i in table_info.table_fields]
         host = jdbc_conf.host
         port = jdbc_conf.port
         db = jdbc_conf.dbname
